@@ -7,7 +7,7 @@ enum State {
 	Lost
 }
 
-const base_url : String = "http://localhost:8000"
+const base_url : String = "http://127.0.0.1:8000"
 
 var max_attemps : int = 5
 var attemps : int = max_attemps
@@ -16,17 +16,43 @@ var total_win : int = 0
 var minimal_date : int = 2019
 var maximum_date : int = 2021
 
+var header : PackedStringArray = PackedStringArray([])
+
 func _ready() -> void:
-	var header : PackedStringArray = PackedStringArray([])
-	$HTTPRequest.request(
+	$HTTPRequest.request_completed.connect(process_html_request)
+	var err : Error = $HTTPRequest.request(
 		base_url,
 		header,
-		HTTPClient.Method.METHOD_GET,
-		""
+		HTTPClient.Method.METHOD_GET
 	)
+	
+	if err != OK :
+		print("Failed to connect to server")
+	else :
+		print("Succed to connect to server")
+	
 	show_only_menu($Menus/TitleScreen)
 	update_attemps_text(attemps)
 
+func process_html_request(result : int, response_code : int, headers : PackedStringArray, body : PackedByteArray):
+	print("Result code: ", result)
+	print("Response code: ", response_code)
+	print("Header code: ", headers)
+	
+	var text = body.get_string_from_utf8()
+	if text.is_empty() :
+		print("Nothing sent")
+		return
+	
+	var json = JSON.parse_string(text)
+	if json == null:
+		print("Failed to parse JSON")
+		return
+
+	print("Name: ", json["name"])
+	print("Date: ", json["date"])
+	var b64_image : String = json["image"]
+	$Menus/Game.load_b64_image(b64_image)
 
 func show_only_menu(menu : Control) -> void :
 	for m in $Menus.get_children():
