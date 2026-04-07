@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://lkei4wt6usdg"]
+
+[ext_resource type="Script" uid="uid://c82ohnsrk35im" path="res://Scenes/timeline.gd" id="1_5kc13"]
+[ext_resource type="PackedScene" uid="uid://c0oxu4qoi7a2n" path="res://Scenes/text_marker.tscn" id="2_65cdy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65cdy"]
+
+[node name="Timeline" type="PanelContainer" unique_id=543020786]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 571.0
+offset_bottom = 227.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_65cdy")
+script = ExtResource("1_5kc13")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1170472874]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=581408342]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer" unique_id=1274917809]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Time Labels" type="HBoxContainer" parent="." unique_id=1000387115]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Time Labels" unique_id=1734775578]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer" parent="Time Labels" unique_id=1463066861 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Time Labels" unique_id=634791071]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer2" parent="Time Labels" unique_id=1755684124 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Time Labels" unique_id=353668317]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer3" parent="Time Labels" unique_id=1455432101 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator4" type="VSeparator" parent="Time Labels" unique_id=744296294]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer4" parent="Time Labels" unique_id=1848738232 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator5" type="VSeparator" parent="Time Labels" unique_id=1307677240]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer5" parent="Time Labels" unique_id=1643809645 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator6" type="VSeparator" parent="Time Labels" unique_id=1886255283]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer6" parent="Time Labels" unique_id=1641269880 instance=ExtResource("2_65cdy")]
+layout_mode = 2
+
+[node name="VSeparator7" type="VSeparator" parent="Time Labels" unique_id=1410175589]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer7" parent="Time Labels" unique_id=418736597 instance=ExtResource("2_65cdy")]
+layout_mode = 2
