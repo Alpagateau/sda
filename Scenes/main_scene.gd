@@ -9,8 +9,12 @@ enum State {
 
 const base_url : String = "http://localhost:8000"
 
-const MAX_ATTEMPS : int = 5
-var attemps : int = MAX_ATTEMPS
+var max_attemps : int = 5
+var attemps : int = max_attemps
+var win_streak : int = 0
+var total_win : int = 0
+var minimal_date : int = 2019
+var maximum_date : int = 2021
 
 func _ready() -> void:
 	var header : PackedStringArray = PackedStringArray([])
@@ -43,10 +47,14 @@ func _on_guess_pressed() -> void:
 	var date : String = $Menus/Game/DateEntry.text
 	if date.is_valid_int():
 		decrement_attemps()
-		if date.to_int() == 2020 :
-			update_win_text(MAX_ATTEMPS - attemps)
+		var date_value : int = date.to_int()
+		if minimal_date <= date_value and date_value <= maximum_date :
+			update_win_text(max_attemps - attemps)
+			win_streak += 1
+			total_win += 1
 			show_only_menu($Menus/Win)
 		elif attemps == 0 :
+			win_streak = 0
 			show_only_menu($Menus/Lose)
 
 func decrement_attemps() -> void :
