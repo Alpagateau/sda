@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c48f05e2g4ujs"]
 
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
-[ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="2_8gbba"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -76,6 +76,7 @@ tu as perdu :)"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_8gbba")
 
 [node name="GuessText" type="Label" parent="Menus/Game" unique_id=1123302638]
 layout_mode = 0
@@ -115,7 +116,6 @@ offset_left = 470.0
 offset_top = 89.0
 offset_right = 628.0
 offset_bottom = 289.0
-texture = ExtResource("2_bo1nx")
 
 [node name="Win" type="Control" parent="Menus" unique_id=1064467297]
 visible = false
