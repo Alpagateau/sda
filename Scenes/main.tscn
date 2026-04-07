@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://btvdm82lbfmho" path="res://Scenes/http_request.gd" id="2_jjvhh"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -13,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_jjgbg")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1035645630]
+script = ExtResource("2_jjvhh")
 
 [node name="Menus" type="Control" parent="." unique_id=1799261247]
 anchors_preset = 0
@@ -20,10 +22,18 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TitleScreen" type="Control" parent="Menus" unique_id=306781003]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="WaitingText" type="Label" parent="Menus/TitleScreen" unique_id=1989231602]
+visible = false
+layout_mode = 0
+offset_left = 490.0
+offset_top = 164.0
+offset_right = 580.0
+offset_bottom = 187.0
+text = "Waiting."
 
 [node name="TitleText" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
 layout_mode = 0
@@ -35,10 +45,10 @@ text = "Nom du jeu"
 
 [node name="Play" type="Button" parent="Menus/TitleScreen" unique_id=667404207]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 239.0
-offset_right = 567.0
-offset_bottom = 270.0
+offset_left = 484.0
+offset_top = 222.0
+offset_right = 609.0
+offset_bottom = 302.0
 text = "Jouer"
 
 [node name="Rules" type="Button" parent="Menus/TitleScreen" unique_id=330821414]
@@ -73,6 +83,7 @@ text = "voici les regles du jeu:
 tu as perdu :)"
 
 [node name="Game" type="Control" parent="Menus" unique_id=1094142135]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

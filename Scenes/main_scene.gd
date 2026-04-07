@@ -7,8 +7,6 @@ enum State {
 	Lost
 }
 
-const base_url : String = "http://127.0.0.1:8000"
-
 var max_attemps : int = 5
 var attemps : int = max_attemps
 var win_streak : int = 0
@@ -16,43 +14,37 @@ var total_win : int = 0
 var minimal_date : int = 2019
 var maximum_date : int = 2021
 
-var header : PackedStringArray = PackedStringArray([])
-
-func _ready() -> void:
-	$HTTPRequest.request_completed.connect(process_html_request)
-	var err : Error = $HTTPRequest.request(
-		base_url,
-		header,
-		HTTPClient.Method.METHOD_GET
-	)
-	
-	if err != OK :
-		print("Failed to connect to server")
-	else :
-		print("Succed to connect to server")
-	
+func _ready() -> void:	
 	show_only_menu($Menus/TitleScreen)
 	update_attemps_text(attemps)
+	waiting()
 
-func process_html_request(result : int, response_code : int, headers : PackedStringArray, body : PackedByteArray):
-	print("Result code: ", result)
-	print("Response code: ", response_code)
-	print("Header code: ", headers)
-	
-	var text = body.get_string_from_utf8()
-	if text.is_empty() :
-		print("Nothing sent")
-		return
-	
-	var json = JSON.parse_string(text)
-	if json == null:
-		print("Failed to parse JSON")
-		return
+var waiting_dot : int = 0
+func update_waiting_text():
+	waiting_dot += 1
+	waiting_dot = waiting_dot % 3
+	var s : String = ""
+	for i in range(waiting_dot):
+		s += "."
+	$Menus/TitleScreen/WaitingText.text = "Waiting." + s
 
-	print("Name: ", json["name"])
-	print("Date: ", json["date"])
-	var b64_image : String = json["image"]
-	$Menus/Game.load_b64_image(b64_image)
+signal kill_tween
+
+func waiting() -> void:
+	$Menus/TitleScreen/WaitingText.show()
+	$Menus/TitleScreen/WaitingText.text = "Waiting."
+	$Menus/TitleScreen/Play.disabled = true
+		
+	var tween : Tween = create_tween()
+	kill_tween.connect(tween.kill)
+	tween.set_loops()
+	tween.tween_interval(1.0)
+	tween.tween_callback(update_waiting_text)
+
+func end_waiting() -> void:
+	kill_tween.emit()
+	$Menus/TitleScreen/WaitingText.hide()
+	$Menus/TitleScreen/Play.disabled = false
 
 func show_only_menu(menu : Control) -> void :
 	for m in $Menus.get_children():
