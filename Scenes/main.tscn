@@ -12,3 +12,78 @@ grow_vertical = 2
 script = ExtResource("1_jjgbg")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1035645630]
+
+[node name="Menus" type="Control" parent="." unique_id=1799261247]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleScreen" type="Control" parent="Menus" unique_id=306781003]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 57.0
+offset_right = 578.0
+offset_bottom = 80.0
+text = "Nom du jeu"
+
+[node name="Play" type="Button" parent="Menus/TitleScreen" unique_id=667404207]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 239.0
+offset_right = 567.0
+offset_bottom = 270.0
+text = "Jouer"
+
+[node name="Rules" type="Button" parent="Menus/TitleScreen" unique_id=330821414]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 346.0
+offset_right = 570.0
+offset_bottom = 377.0
+text = "regle"
+
+[node name="Rules" type="Control" parent="Menus" unique_id=256076366]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Return" type="Button" parent="Menus/Rules" unique_id=1201108630]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 425.0
+offset_right = 586.0
+offset_bottom = 456.0
+text = "Retour"
+
+[node name="Label" type="Label" parent="Menus/Rules" unique_id=1975350242]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 215.0
+offset_right = 633.0
+offset_bottom = 264.0
+text = "voici les regles du jeu:
+tu as perdu :)"
+
+[node name="Game" type="Control" parent="Menus" unique_id=1094142135]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Win" type="Control" parent="Menus" unique_id=1064467297]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lose" type="Control" parent="Menus" unique_id=102654381]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
+[connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
