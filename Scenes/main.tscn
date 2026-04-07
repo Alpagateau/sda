@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c48f05e2g4ujs"]
 
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_bo1nx"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -19,11 +20,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TitleScreen" type="Control" parent="Menus" unique_id=306781003]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
+[node name="TitleText" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
 layout_mode = 0
 offset_left = 488.0
 offset_top = 57.0
@@ -48,6 +50,7 @@ offset_bottom = 377.0
 text = "regle"
 
 [node name="Rules" type="Control" parent="Menus" unique_id=256076366]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -60,7 +63,7 @@ offset_right = 586.0
 offset_bottom = 456.0
 text = "Retour"
 
-[node name="Label" type="Label" parent="Menus/Rules" unique_id=1975350242]
+[node name="RulesText" type="Label" parent="Menus/Rules" unique_id=1975350242]
 layout_mode = 0
 offset_left = 469.0
 offset_top = 215.0
@@ -74,16 +77,75 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="GuessText" type="Label" parent="Menus/Game" unique_id=1123302638]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 69.0
+offset_right = 664.0
+offset_bottom = 92.0
+text = "Devine de quelle année date cette oeuvre."
+
+[node name="Guess" type="Button" parent="Menus/Game" unique_id=613119197]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 512.0
+offset_right = 609.0
+offset_bottom = 543.0
+text = "Valider"
+
+[node name="DateEntry" type="TextEdit" parent="Menus/Game" unique_id=811444203]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 369.0
+offset_right = 629.0
+offset_bottom = 445.0
+placeholder_text = "Date"
+
+[node name="AttempsText" type="Label" parent="Menus/Game" unique_id=116478121]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 314.0
+offset_right = 584.0
+offset_bottom = 337.0
+text = "Il vous reste X essais"
+
+[node name="TextureRect" type="TextureRect" parent="Menus/Game" unique_id=1870066187]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 89.0
+offset_right = 628.0
+offset_bottom = 289.0
+texture = ExtResource("2_bo1nx")
+
 [node name="Win" type="Control" parent="Menus" unique_id=1064467297]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="WinText" type="Label" parent="Menus/Win" unique_id=317403119]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 114.0
+offset_right = 658.0
+offset_bottom = 137.0
+text = "Vous avez gagné en X essais."
+
 [node name="Lose" type="Control" parent="Menus" unique_id=102654381]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="LoseText" type="Label" parent="Menus/Lose" unique_id=385585918]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 114.0
+offset_right = 658.0
+offset_bottom = 137.0
+text = "Désolé vous avez perdu :<"
 
 [connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Menus/Game/Guess" to="." method="_on_guess_pressed"]
