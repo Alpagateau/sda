@@ -14,7 +14,8 @@ class Handler(BaseHTTPRequestHandler):
         response = json.dumps({
             "name": "Player",
             "date": "03-04-2026",
-            "image": base64_str
+            "image": base64_str,
+            "streak": 5
         }).encode("utf-8")
 
         self.send_response(200)

@@ -43,15 +43,19 @@ func waiting() -> void:
 
 func end_waiting() -> void:
 	kill_tween.emit()
+	update_title_screen()
 	$Menus/TitleScreen/WaitingText.hide()
 	$Menus/TitleScreen/Play.disabled = false
-	update_title_screen()
 
 func show_only_menu(menu : Control) -> void :
 	for m in $Menus.get_children():
 		if m is CanvasItem :
 			m.hide()
 	menu.show()
+
+func init_player(player_streak) -> void:
+	win_streak = player_streak
+	update_streak_text(player_streak)
 	
 func update_title_screen() -> void :
 	update_streak_text(win_streak)
@@ -71,6 +75,7 @@ func show_lose_menu() -> void:
 	$Menus/EndGamePanel/ReturnButton.show()
 
 func _on_play_pressed() -> void:
+	# TODO: Check si le joueur n'a pas deja joué ?
 	start_game()
 
 func _on_rules_pressed() -> void:
