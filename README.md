@@ -1,3 +1,4 @@
+
 # Jeux SDA 2026
 
 Dans ce jeu, une oeuvre d'art sera présentée chaque jour (ou demi journée). L'objectif du joueur est de deviner la date de création de cette oeuvre en un nombre de coup limité. 
