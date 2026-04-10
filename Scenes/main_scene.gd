@@ -45,16 +45,30 @@ func end_waiting() -> void:
 	kill_tween.emit()
 	$Menus/TitleScreen/WaitingText.hide()
 	$Menus/TitleScreen/Play.disabled = false
+	update_title_screen()
 
 func show_only_menu(menu : Control) -> void :
 	for m in $Menus.get_children():
 		if m is CanvasItem :
 			m.hide()
 	menu.show()
+	
+func update_title_screen() -> void :
+	update_streak_text(win_streak)
 
 func start_game() -> void :
 	show_only_menu($Menus/Game)
 	$Menus/Game/TextureRect.show()
+	
+func show_win_menu() -> void:
+	show_only_menu($Menus/EndGamePanel)
+	$Menus/EndGamePanel/Win.show()
+	$Menus/EndGamePanel/ReturnButton.show()
+
+func show_lose_menu() -> void:
+	show_only_menu($Menus/EndGamePanel)
+	$Menus/EndGamePanel/Lose.show()
+	$Menus/EndGamePanel/ReturnButton.show()
 
 func _on_play_pressed() -> void:
 	start_game()
@@ -63,6 +77,7 @@ func _on_rules_pressed() -> void:
 	show_only_menu($Menus/Rules)
 
 func _on_return_pressed() -> void:
+	update_title_screen()
 	show_only_menu($Menus/TitleScreen)
 
 func _on_guess_pressed() -> void:
@@ -74,10 +89,10 @@ func _on_guess_pressed() -> void:
 			update_win_text(max_attemps - attemps)
 			win_streak += 1
 			total_win += 1
-			show_only_menu($Menus/Win)
+			show_win_menu()
 		elif attemps == 0 :
 			win_streak = 0
-			show_only_menu($Menus/Lose)
+			show_lose_menu()
 
 func decrement_attemps() -> void :
 	attemps -= 1
@@ -86,6 +101,9 @@ func decrement_attemps() -> void :
 func update_attemps_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
 	$Menus/Game/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
+	
+func update_streak_text(value : int) -> void:
+	$Menus/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
 	
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"

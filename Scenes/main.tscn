@@ -59,6 +59,14 @@ offset_right = 570.0
 offset_bottom = 377.0
 text = "regle"
 
+[node name="StreakText" type="Label" parent="Menus/TitleScreen" unique_id=1784228704]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 142.0
+offset_right = 599.0
+offset_bottom = 165.0
+text = "Série actuelle: X"
+
 [node name="Rules" type="Control" parent="Menus" unique_id=256076366]
 visible = false
 anchors_preset = 0
@@ -128,13 +136,23 @@ offset_top = 89.0
 offset_right = 628.0
 offset_bottom = 289.0
 
-[node name="Win" type="Control" parent="Menus" unique_id=1064467297]
+[node name="EndGamePanel" type="Control" parent="Menus" unique_id=571691386]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 449.0
+offset_top = 369.0
+offset_right = 489.0
+offset_bottom = 409.0
 
-[node name="WinText" type="Label" parent="Menus/Win" unique_id=317403119]
+[node name="Win" type="Control" parent="Menus/EndGamePanel" unique_id=1064467297]
+visible = false
+anchors_preset = 0
+offset_left = -449.0
+offset_top = -369.0
+offset_right = -409.0
+offset_bottom = -329.0
+
+[node name="WinText" type="Label" parent="Menus/EndGamePanel/Win" unique_id=317403119]
 layout_mode = 0
 offset_left = 438.0
 offset_top = 114.0
@@ -142,13 +160,15 @@ offset_right = 658.0
 offset_bottom = 137.0
 text = "Vous avez gagné en X essais."
 
-[node name="Lose" type="Control" parent="Menus" unique_id=102654381]
+[node name="Lose" type="Control" parent="Menus/EndGamePanel" unique_id=102654381]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -449.0
+offset_top = -369.0
+offset_right = -409.0
+offset_bottom = -329.0
 
-[node name="LoseText" type="Label" parent="Menus/Lose" unique_id=385585918]
+[node name="LoseText" type="Label" parent="Menus/EndGamePanel/Lose" unique_id=385585918]
 layout_mode = 0
 offset_left = 438.0
 offset_top = 114.0
@@ -156,7 +176,14 @@ offset_right = 658.0
 offset_bottom = 137.0
 text = "Désolé vous avez perdu :<"
 
+[node name="ReturnButton" type="Button" parent="Menus/EndGamePanel" unique_id=943279623]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Retour au menu"
+
 [connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Menus/Game/Guess" to="." method="_on_guess_pressed"]
+[connection signal="pressed" from="Menus/EndGamePanel/ReturnButton" to="." method="_on_return_pressed"]
