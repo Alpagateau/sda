@@ -52,8 +52,12 @@ func show_only_menu(menu : Control) -> void :
 			m.hide()
 	menu.show()
 
-func _on_play_pressed() -> void:
+func start_game() -> void :
 	show_only_menu($Menus/Game)
+	$Menus/Game/TextureRect.show()
+
+func _on_play_pressed() -> void:
+	start_game()
 
 func _on_rules_pressed() -> void:
 	show_only_menu($Menus/Rules)
