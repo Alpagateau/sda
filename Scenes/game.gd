@@ -26,8 +26,9 @@ func update_attemps_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
 	$MarginContainer2/VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
 
-func _on_answer_submitted(text:String) -> void :
-	guessed.emit(text)
+func _on_answer_submitted() -> void :
+	#guessed.emit()
+	_on_guess_pressed()
 
 func add_marker(year : int):
 	var new_marker : Marker = Marker.new()
@@ -38,7 +39,7 @@ func add_marker(year : int):
 	$MarginContainer/ScrollContainer/Ruler2.queue_redraw()
 
 func _on_guess_pressed() -> void:
-	guessed.emit()
+	#guessed.emit() <- infinite calls ? or idk how signals work
 	var date : String = $MarginContainer2/VBoxContainer/HBoxContainer/DateEntry.text
 	if date.is_valid_int():
 		decrement_attemps()

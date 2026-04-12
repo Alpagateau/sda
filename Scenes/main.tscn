@@ -150,5 +150,6 @@ text = "Retour au menu"
 [connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
-[connection signal="guess_pressed" from="Menus/Game" to="." method="_on_guess_pressed"]
+[connection signal="loose" from="Menus/Game" to="." method="on_loose"]
+[connection signal="win" from="Menus/Game" to="." method="on_win"]
 [connection signal="pressed" from="Menus/EndGamePanel/ReturnButton" to="." method="_on_return_pressed"]
