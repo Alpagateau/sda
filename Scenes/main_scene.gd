@@ -92,7 +92,6 @@ func _on_return_pressed() -> void:
 	show_only_menu($Menus/TitleScreen)
 
 func _on_guess_pressed(date : String) -> void:
-	
 	if date.is_valid_int():
 		decrement_attemps()
 		var date_value : int = date.to_int()

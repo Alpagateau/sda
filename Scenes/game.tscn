@@ -28,10 +28,13 @@ text = "Devine de quelle année date cette oeuvre."
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=577714986]
 layout_mode = 2
 
-[node name="DateEntry" type="TextEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=2049541219]
+[node name="DateEntry" type="LineEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1876153362]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Date"
+placeholder_text = "Date ..."
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+clear_button_enabled = true
 
 [node name="Guess" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=864654446]
 layout_mode = 2
@@ -57,4 +60,5 @@ alignment = 1
 [node name="Timeline" parent="MarginContainer" unique_id=1544057268 instance=ExtResource("2_wrm1d")]
 layout_mode = 2
 
+[connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]

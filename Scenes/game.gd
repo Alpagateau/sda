@@ -19,3 +19,6 @@ func update_attemps_text(value : int) -> void :
 
 func _on_guess_pressed() -> void :
 	guess_pressed.emit($MarginContainer2/VBoxContainer/HBoxContainer/DateEntry.text)
+
+func _on_answer_submitted(text:String) -> void :
+	guess_pressed.emit(text)
