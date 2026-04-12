@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://1d184xfp3c40"]
+
+[ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="1_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_3dryh"]
+[ext_resource type="PackedScene" uid="uid://lkei4wt6usdg" path="res://Scenes/timeline.tscn" id="2_wrm1d"]
+
+[node name="Game" type="VBoxContainer" unique_id=1346781987]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qxrlw")
+
+[node name="MarginContainer2" type="HBoxContainer" parent="." unique_id=957264537]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1749886422]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GuessText" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=1130793368]
+layout_mode = 2
+text = "Devine de quelle année date cette oeuvre."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=577714986]
+layout_mode = 2
+
+[node name="DateEntry" type="TextEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=2049541219]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Date"
+
+[node name="Guess" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=864654446]
+layout_mode = 2
+text = "Valider"
+
+[node name="AttempsText" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=443166781]
+layout_mode = 2
+text = "Il vous reste X essais"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2" unique_id=957246416]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/CenterContainer" unique_id=1943072745]
+layout_mode = 2
+texture = ExtResource("2_3dryh")
+
+[node name="MarginContainer" type="VBoxContainer" parent="." unique_id=1849128363]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Timeline" parent="MarginContainer" unique_id=1544057268 instance=ExtResource("2_wrm1d")]
+layout_mode = 2
