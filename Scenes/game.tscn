@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://1d184xfp3c40"]
+[gd_scene format=3 uid="uid://c6r3q0g3xkyx"]
 
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_3dryh"]
@@ -56,3 +56,5 @@ alignment = 1
 
 [node name="Timeline" parent="MarginContainer" unique_id=1544057268 instance=ExtResource("2_wrm1d")]
 layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]

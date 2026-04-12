@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://btvdm82lbfmho" path="res://Scenes/http_request.gd" id="2_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://1d184xfp3c40" path="res://Scenes/game.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://c6r3q0g3xkyx" path="res://Scenes/game.tscn" id="3_8gbba"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -150,4 +150,5 @@ text = "Retour au menu"
 [connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
+[connection signal="guess_pressed" from="Menus/Game" to="." method="_on_guess_pressed"]
 [connection signal="pressed" from="Menus/EndGamePanel/ReturnButton" to="." method="_on_return_pressed"]

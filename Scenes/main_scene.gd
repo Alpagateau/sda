@@ -70,11 +70,13 @@ func start_game() -> void :
 	
 func show_win_menu() -> void:
 	show_only_menu($Menus/EndGamePanel)
+	$Menus/EndGamePanel/Lose.hide()
 	$Menus/EndGamePanel/Win.show()
 	$Menus/EndGamePanel/ReturnButton.show()
 
 func show_lose_menu() -> void:
 	show_only_menu($Menus/EndGamePanel)
+	$Menus/EndGamePanel/Win.hide() # Au cas ou on n'avait pas reset le jeu
 	$Menus/EndGamePanel/Lose.show()
 	$Menus/EndGamePanel/ReturnButton.show()
 
@@ -89,8 +91,8 @@ func _on_return_pressed() -> void:
 	update_title_screen()
 	show_only_menu($Menus/TitleScreen)
 
-func _on_guess_pressed() -> void:
-	var date : String = $Menus/Game/DateEntry.text
+func _on_guess_pressed(date : String) -> void:
+	
 	if date.is_valid_int():
 		decrement_attemps()
 		var date_value : int = date.to_int()
@@ -99,7 +101,7 @@ func _on_guess_pressed() -> void:
 			win_streak += 1
 			total_win += 1
 			show_win_menu()
-		elif attemps == 0 :
+		elif attemps <= 0 :
 			win_streak = 0
 			show_lose_menu()
 
@@ -112,4 +114,4 @@ func update_streak_text(value : int) -> void:
 	
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
-	$Menus/Win/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
+	$Menus/EndGamePanel/Win/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
