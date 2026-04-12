@@ -15,6 +15,7 @@ var minimal_date : int = 2019
 var maximum_date : int = 2021
 var offset : int = 1 # minimal and maximum date are calculated based on offset
 
+signal game_start
 
 func _ready() -> void:	
 	show_only_menu($Menus/TitleScreen)
@@ -66,6 +67,7 @@ func update_title_screen() -> void :
 
 func start_game() -> void :
 	show_only_menu($Menus/Game)
+	game_start.emit(attemps, minimal_date, maximum_date)
 	#$Menus/Game/TextureRect.show()
 	
 func show_win_menu() -> void:

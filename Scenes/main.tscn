@@ -147,6 +147,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Retour au menu"
 
+[connection signal="game_start" from="." to="Menus/Game" method="game_start"]
 [connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
 [connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
