@@ -15,7 +15,8 @@ class Handler(BaseHTTPRequestHandler):
             "name": "Player",
             "date": "03-04-2026",
             "image": base64_str,
-            "streak": 5
+            "streak": 5,
+            "answer":2020
         }).encode("utf-8")
 
         self.send_response(200)

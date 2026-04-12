@@ -13,6 +13,8 @@ var win_streak : int = 0
 var total_win : int = 0
 var minimal_date : int = 2019
 var maximum_date : int = 2021
+var offset : int = 1 # minimal and maximum date are calculated based on offset
+
 
 func _ready() -> void:	
 	show_only_menu($Menus/TitleScreen)
@@ -53,8 +55,10 @@ func show_only_menu(menu : Control) -> void :
 			m.hide()
 	menu.show()
 
-func init_player(player_streak) -> void:
+func init_player(player_streak : int, answer : int) -> void:
 	win_streak = player_streak
+	minimal_date = 	answer - offset
+	maximum_date = answer + offset
 	update_streak_text(player_streak)
 	
 func update_title_screen() -> void :

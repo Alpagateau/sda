@@ -37,6 +37,7 @@ func process_html_request(result : int, response_code : int, headers : PackedStr
 	print("Name: ", json["name"])
 	print("Date: ", json["date"])
 	print("Streak: ", json["streak"])
+	print("Answer: ", json["answer"])
 	var b64_image : String = json["image"]
 	$"../Menus/Game".load_b64_image(b64_image)
-	$"..".init_player(json["streak"])
+	$"..".init_player(json["streak"], json["answer"])
