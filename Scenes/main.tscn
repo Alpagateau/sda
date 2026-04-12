@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://btvdm82lbfmho" path="res://Scenes/http_request.gd" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://lkei4wt6usdg" path="res://Scenes/timeline.tscn" id="4_jjvhh"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -22,6 +23,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TitleScreen" type="Control" parent="Menus" unique_id=306781003]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -91,11 +93,19 @@ text = "voici les regles du jeu:
 tu as perdu :)"
 
 [node name="Game" type="Control" parent="Menus" unique_id=1094142135]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_8gbba")
+
+[node name="Timeline" parent="Menus/Game" unique_id=1544057268 instance=ExtResource("4_jjvhh")]
+layout_mode = 1
+offset_left = 31.0
+offset_top = 122.0
+offset_right = 1054.0
+offset_bottom = 187.0
+separation = 100
+text_height = 10
 
 [node name="GuessText" type="Label" parent="Menus/Game" unique_id=1123302638]
 layout_mode = 0

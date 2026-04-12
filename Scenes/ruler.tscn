@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d1a7tlbdakg01"]
+
+[ext_resource type="Script" uid="uid://bborwn14ky2ic" path="res://Scripts/ruler.gd" id="1_spdjd"]
+
+[node name="Ruler" type="Control" unique_id=1826143249]
+custom_minimum_size = Vector2(2073, 150)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_spdjd")
+continuity = 1
+min_year = -2000
+background_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
