@@ -10,3 +10,7 @@ func b64_to_texture_2d(b64 : String) -> Texture2D:
 # To call when there is a response from the server
 func load_b64_image(b64_image : String):
 	$TextureRect.texture = b64_to_texture_2d(b64_image)
+
+func update_attemps_text(value : int) -> void :
+	var s : String = "" if value < 2 else "s"
+	$MarginContainer2/VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s

@@ -18,7 +18,7 @@ var offset : int = 1 # minimal and maximum date are calculated based on offset
 
 func _ready() -> void:	
 	show_only_menu($Menus/TitleScreen)
-	update_attemps_text(attemps)
+	$Menus/Game.update_attemps_text(attemps)
 	waiting()
 
 var waiting_dot : int = 0
@@ -66,7 +66,7 @@ func update_title_screen() -> void :
 
 func start_game() -> void :
 	show_only_menu($Menus/Game)
-	$Menus/Game/TextureRect.show()
+	#$Menus/Game/TextureRect.show()
 	
 func show_win_menu() -> void:
 	show_only_menu($Menus/EndGamePanel)
@@ -105,11 +105,7 @@ func _on_guess_pressed() -> void:
 
 func decrement_attemps() -> void :
 	attemps -= 1
-	update_attemps_text(attemps)
-
-func update_attemps_text(value : int) -> void :
-	var s : String = "" if value < 2 else "s"
-	$Menus/Game/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
+	$Menus/Game.update_attemps_text(attemps)
 	
 func update_streak_text(value : int) -> void:
 	$Menus/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
