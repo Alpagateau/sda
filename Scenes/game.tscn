@@ -59,15 +59,11 @@ alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1024456833]
 layout_mode = 2
-<<<<<<< HEAD
-
-[connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
-=======
 size_flags_vertical = 0
 vertical_scroll_mode = 0
 
 [node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
 layout_mode = 2
 
->>>>>>> 1b676b3 (markers and responsivness)
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]
+[connection signal="guessed" from="." to="." method="_on_guess_pressed"]
+[connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
