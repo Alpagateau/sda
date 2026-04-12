@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_3dryh"]
-[ext_resource type="PackedScene" uid="uid://lkei4wt6usdg" path="res://Scenes/timeline.tscn" id="2_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://d1a7tlbdakg01" path="res://Scenes/ruler.tscn" id="3_wrm1d"]
 
 [node name="Game" type="VBoxContainer" unique_id=1346781987]
 anchors_preset = 15
@@ -57,8 +57,17 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Timeline" parent="MarginContainer" unique_id=1544057268 instance=ExtResource("2_wrm1d")]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1024456833]
 layout_mode = 2
+<<<<<<< HEAD
 
 [connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
+=======
+size_flags_vertical = 0
+vertical_scroll_mode = 0
+
+[node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
+layout_mode = 2
+
+>>>>>>> 1b676b3 (markers and responsivness)
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]

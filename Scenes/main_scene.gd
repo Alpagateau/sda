@@ -90,23 +90,6 @@ func _on_rules_pressed() -> void:
 func _on_return_pressed() -> void:
 	update_title_screen()
 	show_only_menu($Menus/TitleScreen)
-
-func _on_guess_pressed(date : String) -> void:
-	if date.is_valid_int():
-		decrement_attemps()
-		var date_value : int = date.to_int()
-		if minimal_date <= date_value and date_value <= maximum_date :
-			update_win_text(max_attemps - attemps)
-			win_streak += 1
-			total_win += 1
-			show_win_menu()
-		elif attemps <= 0 :
-			win_streak = 0
-			show_lose_menu()
-
-func decrement_attemps() -> void :
-	attemps -= 1
-	$Menus/Game.update_attemps_text(attemps)
 	
 func update_streak_text(value : int) -> void:
 	$Menus/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
@@ -114,3 +97,13 @@ func update_streak_text(value : int) -> void:
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
 	$Menus/EndGamePanel/Win/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
+
+func on_win():
+	update_win_text(max_attemps - attemps)
+	win_streak += 1
+	total_win += 1
+	show_win_menu()
+
+func on_loose():
+	win_streak = 0
+	show_lose_menu()

@@ -40,18 +40,22 @@ func _ready() -> void:
 	custom_minimum_size.y = height
 	update_minimum_size()
 	
-func draw_marker(year : int):
+func draw_marker(year : int, c : Color = stick_color):
 	var origin : Vector2 = position + Vector2.RIGHT * year_to_pos(year)
 	draw_line(
 		origin,
 		origin + Vector2.DOWN * height,
-		stick_color,
+		c,
 		2
 	)
 	draw_string(
 		ThemeDB.fallback_font,
 		origin + Vector2.DOWN * ThemeDB.fallback_font_size + Vector2.RIGHT * 3, 
-		str(year)
+		str(year),
+		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
+		-1,
+		16,
+		c if c != stick_color else Color.WHITE
 	)
 
 func year_to_pos(year : int) -> int:
@@ -82,3 +86,34 @@ func _draw() -> void:
 			draw_marker(current_year)
 			last_year = current_year
 		current_year += 5
+	
+	var min_guess : int = min_year
+	var max_guess : int = max_year
+	for c in get_children():
+		if c is Marker:
+			draw_marker(c.date, c.color)
+			match c.relative_position:
+				Marker.Position.Before:
+					if c.date >= min_guess:
+						min_guess = c.date
+				Marker.Position.After:
+					if c.date <= max_guess:
+						max_guess = c.date
+				_:
+					pass
+	var point1 = position +Vector2.RIGHT * year_to_pos(max_guess) + Vector2.DOWN * ThemeDB.fallback_font_size
+	var point2 = position +Vector2.RIGHT * year_to_pos(min_guess) + Vector2.DOWN * get_rect().end.y
+	draw_rect(
+		Rect2(
+			point1,
+			get_rect().end - point1
+		),
+		Color.from_rgba8(0,0,0,155)
+	)
+	draw_rect(
+		Rect2(
+			position + Vector2.DOWN * ThemeDB.fallback_font_size,
+			point2
+		),
+		Color.from_rgba8(0,0,0,155)
+	)

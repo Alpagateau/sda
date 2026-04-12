@@ -25,7 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleScreen" type="VBoxContainer" parent="Menus" unique_id=1193295578]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,6 +98,7 @@ size_flags_horizontal = 4
 text = "Retour"
 
 [node name="Game" parent="Menus" unique_id=1869356464 instance=ExtResource("3_8gbba")]
+visible = false
 layout_mode = 1
 
 [node name="EndGamePanel" type="Control" parent="Menus" unique_id=571691386]
