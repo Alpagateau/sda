@@ -12,6 +12,12 @@ Quand le joueur trouve la bonne année (a une marge près pour les oeuvres ancie
 - Export : WebGL
 
 Le front-end peut se diviser en plusieurs states : Loading, Guessing, Lost, Won
+Colors : 
+	#5a2702
+	#2F1A11
+	#ffdb15
+	#93441A 
+	#235789
 
 ## Loading
 

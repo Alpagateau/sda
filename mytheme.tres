@@ -1,0 +1,58 @@
+[gd_resource type="Theme" format=3 uid="uid://ckem3oug84o3o"]
+
+[ext_resource type="FontFile" uid="uid://dogmxbp8v3xsk" path="res://fonts/Cascadia_Mono/static/CascadiaMono-Bold.ttf" id="1_hib2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hib2s"]
+bg_color = Color(0.5764706, 0.26666668, 0.101960786, 1)
+border_width_left = 5
+border_width_top = 5
+border_color = Color(0.3529412, 0.15294118, 0.007843138, 1)
+corner_detail = 20
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kujlq"]
+bg_color = Color(0.13725491, 0.34117648, 0.5372549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/colors/font_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Button/colors/font_focus_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Button/colors/font_hover_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Button/colors/font_hover_pressed_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Button/colors/font_pressed_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Button/fonts/font = ExtResource("1_hib2s")
+Button/styles/normal = SubResource("StyleBoxFlat_hib2s")
+CheckBox/fonts/font = null
+CheckButton/fonts/font = null
+CodeEdit/fonts/font = null
+ColorPickerButton/fonts/font = null
+FoldableContainer/fonts/font = null
+GraphNodeTitleLabel/fonts/font = null
+ItemList/fonts/font = null
+Label/colors/font_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+Label/fonts/font = ExtResource("1_hib2s")
+LineEdit/fonts/font = ExtResource("1_hib2s")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_kujlq")
+LinkButton/fonts/font = null
+MenuBar/fonts/font = null
+MenuButton/fonts/font = null
+OptionButton/fonts/font = null
+PopupMenu/fonts/font = null
+PopupMenu/fonts/font_separator = null
+ProgressBar/fonts/font = ExtResource("1_hib2s")
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+TabBar/fonts/font = ExtResource("1_hib2s")
+TabContainer/fonts/font = null
+TextEdit/fonts/font = ExtResource("1_hib2s")
+TooltipLabel/fonts/font = null
+Tree/fonts/font = ExtResource("1_hib2s")
+Tree/fonts/title_button_font = ExtResource("1_hib2s")
+Window/fonts/title_font = null
