@@ -11,4 +11,4 @@ size_flags_vertical = 0
 script = ExtResource("1_spdjd")
 continuity = 2
 min_year = -2000
-background_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+background_color = Color(0.7371927, 0.73719305, 0.7371929, 1)

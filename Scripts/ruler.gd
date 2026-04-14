@@ -41,7 +41,7 @@ func _ready() -> void:
 	update_minimum_size()
 	
 func draw_marker(year : int, c : Color = stick_color):
-	var origin : Vector2 = position + Vector2.RIGHT * year_to_pos(year)
+	var origin : Vector2 = Vector2.RIGHT * year_to_pos(year)
 	draw_line(
 		origin,
 		origin + Vector2.DOWN * height,
@@ -76,8 +76,8 @@ func _draw() -> void:
 	var last_year : int = min_year
 	draw_rect(
 		Rect2(
-			position + Vector2.DOWN * ThemeDB.fallback_font_size,
-			get_rect().end
+			Vector2.DOWN * ThemeDB.fallback_font_size,
+			size
 		),
 		background_color
 	)
@@ -101,18 +101,18 @@ func _draw() -> void:
 						max_guess = c.date
 				_:
 					pass
-	var point1 = position +Vector2.RIGHT * year_to_pos(max_guess) + Vector2.DOWN * ThemeDB.fallback_font_size
-	var point2 = position +Vector2.RIGHT * year_to_pos(min_guess) + Vector2.DOWN * get_rect().end.y
+	var point1 = Vector2.RIGHT * year_to_pos(max_guess) + Vector2.DOWN * ThemeDB.fallback_font_size
+	var point2 = Vector2.RIGHT * year_to_pos(min_guess) + Vector2.DOWN * get_rect().end.y
 	draw_rect(
 		Rect2(
 			point1,
-			get_rect().end - point1
+			size - point1
 		),
 		Color.from_rgba8(0,0,0,155)
 	)
 	draw_rect(
 		Rect2(
-			position + Vector2.DOWN * ThemeDB.fallback_font_size,
+			Vector2.DOWN * ThemeDB.fallback_font_size,
 			point2
 		),
 		Color.from_rgba8(0,0,0,155)

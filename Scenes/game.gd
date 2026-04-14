@@ -34,6 +34,7 @@ func add_marker(year : int):
 	var new_marker : Marker = Marker.new()
 	new_marker.date = year
 	new_marker.relative_position = Marker.Position.Before if year <= minimal_date else Marker.Position.After
+	print(minimal_date)
 	new_marker.color = Color.RED
 	$MarginContainer/ScrollContainer/Ruler2.add_child(new_marker)
 	$MarginContainer/ScrollContainer/Ruler2.queue_redraw()
