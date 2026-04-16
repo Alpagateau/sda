@@ -72,6 +72,24 @@ func year_to_pos(year : int) -> int:
 			return 0
 
 func _draw() -> void:
+	
+	var min_guess : int = min_year
+	var max_guess : int = max_year
+	for c in get_children():
+		if c is Marker:
+			match c.relative_position:
+				Marker.Position.Before:
+					if c.date >= min_guess:
+						min_guess = c.date
+				Marker.Position.After:
+					if c.date <= max_guess:
+						max_guess = c.date
+				_:
+					pass
+	min_year = (min_year + min_guess) / 2
+	max_year = (max_year + max_guess) / 2
+	
+	
 	var current_year : int = min_year
 	var last_year : int = min_year
 	draw_rect(
@@ -86,21 +104,9 @@ func _draw() -> void:
 			draw_marker(current_year)
 			last_year = current_year
 		current_year += 5
-	
-	var min_guess : int = min_year
-	var max_guess : int = max_year
 	for c in get_children():
 		if c is Marker:
 			draw_marker(c.date, c.color)
-			match c.relative_position:
-				Marker.Position.Before:
-					if c.date >= min_guess:
-						min_guess = c.date
-				Marker.Position.After:
-					if c.date <= max_guess:
-						max_guess = c.date
-				_:
-					pass
 	var point1 = Vector2.RIGHT * year_to_pos(max_guess) + Vector2.DOWN * ThemeDB.fallback_font_size
 	var point2 = Vector2.RIGHT * year_to_pos(min_guess) + Vector2.DOWN * get_rect().end.y
 	draw_rect(

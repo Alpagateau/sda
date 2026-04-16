@@ -12,11 +12,14 @@ class Handler(BaseHTTPRequestHandler):
         base64_str = base64.b64encode(image_bytes).decode("utf-8")
 
         response = json.dumps({
-            "name": "Player",
+            "PlayerName": "Player",
+            "PlayerStreak": 0,
+            "PlayerTotal" : 0,
+            "MaxDelta" : 0,
+            "NumberOfTries" : 5,
             "date": "03-04-2026",
-            "image": base64_str,
-            "streak": 5,
-            "answer":2020
+            "Image": base64_str,
+            "Answer":2020
         }).encode("utf-8")
 
         self.send_response(200)

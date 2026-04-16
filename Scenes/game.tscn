@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6r3q0g3xkyx"]
 
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="1_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/image.png" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://djrlfkt78dksx" path="res://test_server/image.png" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://d1a7tlbdakg01" path="res://Scenes/ruler.tscn" id="3_wrm1d"]
 
 [node name="Game" type="VBoxContainer" unique_id=1346781987]
@@ -51,6 +51,8 @@ size_flags_horizontal = 3
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/CenterContainer" unique_id=1943072745]
 layout_mode = 2
 texture = ExtResource("2_3dryh")
+expand_mode = 5
+stretch_mode = 3
 
 [node name="MarginContainer" type="VBoxContainer" parent="." unique_id=1849128363]
 layout_mode = 2

@@ -9,7 +9,7 @@ class_name Response
 
 #Today's challenge
 @export var ImageB64 : String
-@export var Date : int
+@export var Answer : int
 
 #Rules
 @export var NumberOfTries : int

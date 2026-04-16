@@ -52,8 +52,7 @@ text = "Waiting."
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jjvhh")
 theme_override_font_sizes/font_size = 80
-text = "DATE
-GUESSER"
+text = "ATGuess"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Menus/TitleScreen" unique_id=236600597]
