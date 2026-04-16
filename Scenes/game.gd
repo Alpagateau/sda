@@ -52,7 +52,7 @@ func _on_guess_pressed() -> void:
 		var date_value : int = date.to_int()
 		add_marker(date_value)
 		if minimal_date <= date_value and date_value <= maximum_date :
-			win.emit()
+			win.emit(attemps)
 		elif attemps == 0 :
 			loose.emit()
 

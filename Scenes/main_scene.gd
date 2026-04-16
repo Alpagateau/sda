@@ -100,8 +100,8 @@ func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
 	$Menus/EndGamePanel/Win/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
 
-func on_win():
-	update_win_text(max_attemps - attemps)
+func on_win(attemps_nb : int) -> void:
+	update_win_text(max_attemps - attemps_nb)
 	win_streak += 1
 	total_win += 1
 	show_win_menu()
