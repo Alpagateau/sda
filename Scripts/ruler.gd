@@ -19,23 +19,20 @@ enum Continuity
 @export var continuity : Continuity = Continuity.Linear
 @export var min_year : int = -500
 @export var max_year : int = 2026
-@export var precision : int = 100
-@export var distance : float = 0.5
+@export var width : float = 500
 
 @export_category("Visual")
 @export var stick_color : Color
 @export var background_color : Color
 @export var height : int = 150
+@export var number_of_markers : int = 15
 
 @export_tool_button("Redraw") var redraw : Callable = (func(): 
 	queue_redraw()
 	_ready()
 	)
 
-var width : float = 100
-
 func _ready() -> void:
-	width = year_to_pos(max_year+10) + 50
 	custom_minimum_size.x = width
 	custom_minimum_size.y = height
 	update_minimum_size()
@@ -59,22 +56,27 @@ func draw_marker(year : int, c : Color = stick_color):
 	)
 
 func year_to_pos(year : int) -> int:
-	var total_width : float = distance * (max_year - min_year)
 	var percent : float = float(year - min_year) / float(max_year - min_year)
 	match(continuity):
 		Continuity.Linear:
-			return int(lerp(0.0,total_width, percent))
+			return int(lerp(0.0,width, percent))
 		Continuity.Logarithmic_1:
-			return int(lerp(0.0,lerp(0.0, total_width, percent), percent))
+			return int(lerp(0.0,lerp(0.0, width, percent), percent))
 		Continuity.Logarithmic_2:
-			return int(lerp(0.0,lerp(0.0, lerp(0.0, total_width, percent), percent), percent))
+			return int(lerp(0.0,lerp(0.0, lerp(0.0, width, percent), percent), percent))
 		_:
 			return 0
 
 func _draw() -> void:
-	
 	var min_guess : int = min_year
 	var max_guess : int = max_year
+	draw_rect(
+		Rect2(
+			Vector2.DOWN * ThemeDB.fallback_font_size,
+			size
+		),
+		background_color
+	)
 	for c in get_children():
 		if c is Marker:
 			match c.relative_position:
@@ -86,29 +88,29 @@ func _draw() -> void:
 						max_guess = c.date
 				_:
 					pass
-	min_year = (min_year + min_guess) / 2
-	max_year = (max_year + max_guess) / 2
+	if (max_guess - min_guess) > number_of_markers:
+		min_year = (min_year + min_guess) / 2
+		max_year = (max_year + max_guess) / 2
 	
-	
+	#Drawing default markers 
+	for i in range(number_of_markers):
+		var percent : float = (float(i)/ number_of_markers)
+		var pos = int(lerp(0.0, width, percent))
+		var year = int(
+			lerp(min_year, max_year, percent)
+		)
+		draw_marker(year)
+		
 	var current_year : int = min_year
 	var last_year : int = min_year
-	draw_rect(
-		Rect2(
-			Vector2.DOWN * ThemeDB.fallback_font_size,
-			size
-		),
-		background_color
-	)
-	while current_year < max_year:
-		if(year_to_pos(current_year) - year_to_pos(last_year) >= distance * precision):
-			draw_marker(current_year)
-			last_year = current_year
-		current_year += 5
+	
+	# Drawing markers
 	for c in get_children():
 		if c is Marker:
 			draw_marker(c.date, c.color)
 	var point1 = Vector2.RIGHT * year_to_pos(max_guess) + Vector2.DOWN * ThemeDB.fallback_font_size
 	var point2 = Vector2.RIGHT * year_to_pos(min_guess) + Vector2.DOWN * get_rect().end.y
+	# Drawing dead zones
 	draw_rect(
 		Rect2(
 			point1,

@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://bborwn14ky2ic" path="res://Scripts/ruler.gd" id="1_spdjd"]
 
 [node name="Ruler" type="Control" unique_id=1826143249]
-custom_minimum_size = Vector2(2078, 150)
+custom_minimum_size = Vector2(1000, 150)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_spdjd")
-continuity = 2
 min_year = -2000
+max_year = 2050
+width = 1000.0
 background_color = Color(0.7371927, 0.73719305, 0.7371929, 1)
+number_of_markers = 20

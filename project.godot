@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [gui]
 
 theme/custom="uid://ckem3oug84o3o"
-theme/custom_font="uid://b1q56osa6mgwx"
+theme/custom_font="uid://bei45wnglm6b6"
 
 [input]
 

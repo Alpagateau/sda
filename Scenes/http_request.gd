@@ -19,16 +19,26 @@ func _ready() -> void:
 
 
 func process_html_request(result : int, response_code : int, headers : PackedStringArray, body : PackedByteArray):
-	$"..".end_waiting()
+	
 	print("Result code: ", result)
 	print("Response code: ", response_code)
 	print("Header code: ", headers)
 	
 	var text = body.get_string_from_utf8()
 	if text.is_empty() :
-		print("Nothing sent")
-		return
+		print("Nothing sent, retrying")
+		var err : Error = request(
+			URL,
+			header,
+			HTTPClient.Method.METHOD_GET
+		)	
 	
+		if err != OK :
+			print("Failed to create request.")
+		else :
+			print("Succeed to create request")
+		return
+	$"..".end_waiting()
 	var json = JSON.parse_string(text)
 	if json == null:
 		print("Failed to parse JSON")

@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
 script = ExtResource("1_qxrlw")
 
 [node name="MarginContainer2" type="HBoxContainer" parent="." unique_id=957264537]
@@ -59,13 +60,13 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1024456833]
+[node name="ScrollContainer" type="CenterContainer" parent="MarginContainer" unique_id=1765212671]
 layout_mode = 2
 size_flags_vertical = 0
-vertical_scroll_mode = 0
 
 [node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
 layout_mode = 2
+number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]
 [connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]

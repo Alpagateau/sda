@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://btvdm82lbfmho" path="res://Scenes/http_request.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://c6r3q0g3xkyx" path="res://Scenes/game.tscn" id="3_8gbba"]
-[ext_resource type="FontFile" uid="uid://rn1chlqqs8su" path="res://fonts/Diplomata_SC/DiplomataSC-Regular.ttf" id="3_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://cqm5rl57c5b4" path="res://Images/back.png" id="3_kry3j"]
+[ext_resource type="FontFile" uid="uid://dogmxbp8v3xsk" path="res://fonts/Cascadia_Mono/static/CascadiaMono-Bold.ttf" id="4_21xkr"]
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -17,14 +18,15 @@ script = ExtResource("1_jjgbg")
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1035645630]
 script = ExtResource("2_jjvhh")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1375151467]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1587893470]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.85882354, 0.08235294, 1)
+texture = ExtResource("3_kry3j")
+expand_mode = 1
 
 [node name="Menus" type="Control" parent="." unique_id=1799261247]
 layout_mode = 1
@@ -35,6 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleScreen" type="VBoxContainer" parent="Menus" unique_id=1193295578]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,10 +50,15 @@ alignment = 1
 visible = false
 layout_mode = 2
 text = "Waiting."
+horizontal_alignment = 1
 
 [node name="TitleText" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_jjvhh")
+theme_override_colors/font_color = Color(1, 0.85882354, 0.08235294, 1)
+theme_override_colors/font_shadow_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_fonts/font = ExtResource("4_21xkr")
 theme_override_font_sizes/font_size = 80
 text = "ATGuess"
 horizontal_alignment = 1
@@ -109,7 +117,6 @@ size_flags_horizontal = 4
 text = "Retour"
 
 [node name="Game" parent="Menus" unique_id=1869356464 instance=ExtResource("3_8gbba")]
-visible = false
 layout_mode = 1
 
 [node name="EndGamePanel" type="Control" parent="Menus" unique_id=571691386]
