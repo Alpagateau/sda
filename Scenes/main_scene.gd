@@ -7,6 +7,8 @@ enum State {
 	Lost
 }
 
+@export var challenges : Array[Challenge]
+
 var max_attemps : int = 5
 var attemps : int = max_attemps
 var win_streak : int = 0
@@ -20,7 +22,11 @@ signal game_start
 func _ready() -> void:	
 	show_only_menu($Menus/TitleScreen)
 	$Menus/Game.update_attemps_text(attemps)
-	waiting()
+	
+	var current_date : Dictionary = Time.get_datetime_dict_from_system()
+	#select correct thingy
+	
+	#waiting()
 
 var waiting_dot : int = 0
 func update_waiting_text():
