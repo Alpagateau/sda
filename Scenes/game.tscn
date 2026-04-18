@@ -4,21 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://djrlfkt78dksx" path="res://test_server/image.png" id="2_3dryh"]
 [ext_resource type="Texture2D" uid="uid://s1nrc0glqtdn" path="res://Images/frame.png" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://d1a7tlbdakg01" path="res://Scenes/ruler.tscn" id="3_wrm1d"]
+[ext_resource type="Theme" uid="uid://ckem3oug84o3o" path="res://mytheme.tres" id="4_wowpa"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
-bg_color = Color(0.13725491, 0.34117648, 0.5372549, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
+bg_color = Color(0, 0, 0, 0.88235295)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
+corner_detail = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
-bg_color = Color(1, 0.85882354, 0.08235294, 1)
-border_color = Color(0.3529412, 0.15294118, 0.007843138, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
+bg_color = Color(0.13725491, 0.34117648, 0.5372549, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -34,7 +31,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_qxrlw")
 
 [node name="Padding" type="PanelContainer" parent="." unique_id=1820638172]
@@ -65,22 +63,36 @@ texture = ExtResource("2_3dryh")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1749886422]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2080219236]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wowpa")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2099452636]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1749886422]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="GuessText" type="Label" parent="VBoxContainer" unique_id=1130793368]
+[node name="GuessText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1130793368]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Devine de quelle année date cette oeuvre."
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=577714986]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=577714986]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 15
 
-[node name="DateEntry" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1876153362]
+[node name="DateEntry" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1876153362]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wrm1d")
@@ -89,13 +101,14 @@ keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 clear_button_enabled = true
 
-[node name="Guess" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=864654446]
+[node name="Guess" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=864654446]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_3dryh")
+theme = ExtResource("4_wowpa")
 text = "Valider"
 
-[node name="AttempsText" type="Label" parent="VBoxContainer" unique_id=443166781]
+[node name="AttempsText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=443166781]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Il vous reste X essais"
 horizontal_alignment = 1
 
@@ -113,5 +126,5 @@ layout_mode = 2
 number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]
-[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]

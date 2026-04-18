@@ -24,7 +24,7 @@ func load_b64_image(b64_image : String):
 
 func update_attemps_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
-	$VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
+	$PanelContainer/MarginContainer/VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
 
 func _on_answer_submitted(_text:String) -> void :
 	#guessed.emit()
@@ -46,7 +46,7 @@ func game_start(attemps_nb : int, min_date : int, max_date : int) -> void:
 
 func _on_guess_pressed() -> void:
 	#guessed.emit() <- infinite calls ? or idk how signals work
-	var date : String = $VBoxContainer/HBoxContainer/DateEntry.text
+	var date : String = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DateEntry.text
 	if date.is_valid_int():
 		decrement_attemps()
 		var date_value : int = date.to_int()

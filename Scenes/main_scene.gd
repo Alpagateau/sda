@@ -20,7 +20,7 @@ var offset : int = 1 # minimal and maximum date are calculated based on offset
 signal game_start
 
 func _ready() -> void:	
-	show_only_menu($Menus/TitleScreen)
+	show_only_menu($Menus/PanelContainer)
 	$Menus/Game.update_attemps_text(attemps)
 	
 	var current_date : Dictionary = Time.get_datetime_dict_from_system()
@@ -35,14 +35,14 @@ func update_waiting_text():
 	var s : String = ""
 	for i in range(waiting_dot):
 		s += "."
-	$Menus/TitleScreen/WaitingText.text = "Waiting." + s
+	$Menus/PanelContainer/MarginContainer/TitleScreen/WaitingText.text = "Waiting." + s
 
 signal kill_tween
 
 func waiting() -> void:
-	$Menus/TitleScreen/WaitingText.show()
-	$Menus/TitleScreen/WaitingText.text = "Waiting."
-	$Menus/TitleScreen/Play.disabled = true
+	$Menus/PanelContainer/MarginContainer/TitleScreen/WaitingText.show()
+	$Menus/PanelContainer/MarginContainer/TitleScreen/WaitingText.text = "Waiting."
+	$Menus/PanelContainer/MarginContainer/TitleScreen/Play.disabled = true
 		
 	var tween : Tween = create_tween()
 	kill_tween.connect(tween.kill)
@@ -53,8 +53,8 @@ func waiting() -> void:
 func end_waiting() -> void:
 	kill_tween.emit()
 	update_title_screen()
-	$Menus/TitleScreen/WaitingText.hide()
-	$Menus/TitleScreen/Play.disabled = false
+	$Menus/PanelContainer/MarginContainer/TitleScreen/WaitingText.hide()
+	$Menus/PanelContainer/MarginContainer/TitleScreen/Play.disabled = false
 
 func show_only_menu(menu : Control) -> void :
 	for m in $Menus.get_children():
@@ -78,33 +78,33 @@ func start_game() -> void :
 	
 func show_win_menu() -> void:
 	show_only_menu($Menus/EndGamePanel)
-	$Menus/EndGamePanel/Lose.hide()
-	$Menus/EndGamePanel/Win.show()
-	$Menus/EndGamePanel/ReturnButton.show()
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/LoseText.hide()
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.show()
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/ReturnButton.show()
 
 func show_lose_menu() -> void:
 	show_only_menu($Menus/EndGamePanel)
-	$Menus/EndGamePanel/Win.hide() # Au cas ou on n'avait pas reset le jeu
-	$Menus/EndGamePanel/Lose.show()
-	$Menus/EndGamePanel/ReturnButton.show()
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.hide() # Au cas ou on n'avait pas reset le jeu
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/LoseText.show()
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/ReturnButton.show()
 
 func _on_play_pressed() -> void:
 	# TODO: Check si le joueur n'a pas deja joué ?
 	start_game()
 
 func _on_rules_pressed() -> void:
-	show_only_menu($Menus/Rules)
+	show_only_menu($Menus/PanelContainer2)
 
 func _on_return_pressed() -> void:
 	update_title_screen()
-	show_only_menu($Menus/TitleScreen)
+	show_only_menu($Menus/PanelContainer)
 	
 func update_streak_text(value : int) -> void:
-	$Menus/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
+	$Menus/PanelContainer/MarginContainer/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
 	
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
-	$Menus/EndGamePanel/Win/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
 
 func on_win(attemps_nb : int) -> void:
 	update_win_text(max_attemps - attemps_nb)

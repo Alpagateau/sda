@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/omor.png" id="3_344ge"]
 [ext_resource type="Texture2D" uid="uid://cqm5rl57c5b4" path="res://Images/back.png" id="3_kry3j"]
 [ext_resource type="FontFile" uid="uid://dogmxbp8v3xsk" path="res://fonts/Cascadia_Mono/static/CascadiaMono-Bold.ttf" id="4_21xkr"]
+[ext_resource type="Theme" uid="uid://ckem3oug84o3o" path="res://mytheme.tres" id="7_344ge"]
 
 [sub_resource type="Resource" id="Resource_ynf5e"]
 script = ExtResource("2_6bp64")
@@ -14,6 +15,20 @@ image = ExtResource("3_344ge")
 name = "Omor"
 answer = 2020
 metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
+bg_color = Color(0, 0, 0, 0.88235295)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
+bg_color = Color(0, 0, 0, 0.88235295)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
+bg_color = Color(0, 0, 0, 0.88235295)
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -46,23 +61,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleScreen" type="VBoxContainer" parent="Menus" unique_id=1193295578]
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="Menus" unique_id=1119172307]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -117.0
+offset_right = 164.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bp64")
+
+[node name="MarginContainer" type="MarginContainer" parent="Menus/PanelContainer" unique_id=1764195628]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="TitleScreen" type="VBoxContainer" parent="Menus/PanelContainer/MarginContainer" unique_id=1193295578]
+layout_mode = 2
 alignment = 1
 
-[node name="WaitingText" type="Label" parent="Menus/TitleScreen" unique_id=1989231602]
+[node name="WaitingText" type="Label" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1989231602]
 visible = false
 layout_mode = 2
 text = "Waiting."
 horizontal_alignment = 1
 
-[node name="TitleText" type="Label" parent="Menus/TitleScreen" unique_id=1527872093]
+[node name="TitleText" type="Label" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1527872093]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85882354, 0.08235294, 1)
 theme_override_colors/font_shadow_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
@@ -73,46 +104,62 @@ theme_override_font_sizes/font_size = 80
 text = "ATGuess"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Menus/TitleScreen" unique_id=236600597]
+[node name="HSeparator" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=236600597]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="Play" type="Button" parent="Menus/TitleScreen" unique_id=667404207]
+[node name="Play" type="Button" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=667404207]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("7_344ge")
 theme_override_font_sizes/font_size = 42
 text = " Jouer "
 
-[node name="HSeparator2" type="HSeparator" parent="Menus/TitleScreen" unique_id=1433041191]
+[node name="HSeparator2" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1433041191]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="Rules" type="Button" parent="Menus/TitleScreen" unique_id=330821414]
+[node name="Rules" type="Button" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=330821414]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "regle"
+theme = ExtResource("7_344ge")
+text = "Règles"
 
-[node name="HSeparator3" type="HSeparator" parent="Menus/TitleScreen" unique_id=695645831]
+[node name="HSeparator3" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=695645831]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="StreakText" type="Label" parent="Menus/TitleScreen" unique_id=1784228704]
+[node name="StreakText" type="Label" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1784228704]
 layout_mode = 2
-text = "Série actuelle: 0 | Total : 0"
+text = "Série actuelle : 0 | Total : 0"
 horizontal_alignment = 1
 
-[node name="Rules" type="VBoxContainer" parent="Menus" unique_id=833546868]
+[node name="PanelContainer2" type="PanelContainer" parent="Menus" unique_id=2106939126]
 visible = false
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.5
+offset_top = -80.5
+offset_right = 285.5
+offset_bottom = 80.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_344ge")
+
+[node name="Rules" type="VBoxContainer" parent="Menus/PanelContainer2" unique_id=833546868]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menus/Rules" unique_id=319295760]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/PanelContainer2/Rules" unique_id=319295760]
 layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.85882354, 0.08235294, 1)
 text = "Voici les regles :
 Chaques jours, une oeuvre vous sera proposee. 
 Vous avez un nombre fini d'essais pour dater au plus pres cette oeuvre !
@@ -121,64 +168,60 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Return" type="Button" parent="Menus/Rules" unique_id=1201108630]
+[node name="Return" type="Button" parent="Menus/PanelContainer2/Rules" unique_id=1201108630]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Retour"
 
 [node name="Game" parent="Menus" unique_id=1869356464 instance=ExtResource("3_8gbba")]
+visible = false
 layout_mode = 1
 
-[node name="EndGamePanel" type="Control" parent="Menus" unique_id=571691386]
+[node name="EndGamePanel" type="PanelContainer" parent="Menus" unique_id=785068640]
 visible = false
-anchors_preset = 0
-offset_left = 449.0
-offset_top = 369.0
-offset_right = 489.0
-offset_bottom = 409.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -38.0
+offset_right = 129.5
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ynf5e")
 
-[node name="Win" type="Control" parent="Menus/EndGamePanel" unique_id=1064467297]
-visible = false
-anchors_preset = 0
-offset_left = -449.0
-offset_top = -369.0
-offset_right = -409.0
-offset_bottom = -329.0
+[node name="MarginContainer" type="MarginContainer" parent="Menus/EndGamePanel" unique_id=181944123]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="WinText" type="Label" parent="Menus/EndGamePanel/Win" unique_id=317403119]
-layout_mode = 0
-offset_left = 438.0
-offset_top = 114.0
-offset_right = 658.0
-offset_bottom = 137.0
+[node name="EndGameLayout" type="VBoxContainer" parent="Menus/EndGamePanel/MarginContainer" unique_id=1063104069]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WinText" type="Label" parent="Menus/EndGamePanel/MarginContainer/EndGameLayout" unique_id=317403119]
+layout_mode = 2
 text = "Vous avez gagné en X essais."
 
-[node name="Lose" type="Control" parent="Menus/EndGamePanel" unique_id=102654381]
+[node name="LoseText" type="Label" parent="Menus/EndGamePanel/MarginContainer/EndGameLayout" unique_id=385585918]
 visible = false
-anchors_preset = 0
-offset_left = -449.0
-offset_top = -369.0
-offset_right = -409.0
-offset_bottom = -329.0
-
-[node name="LoseText" type="Label" parent="Menus/EndGamePanel/Lose" unique_id=385585918]
-layout_mode = 0
-offset_left = 438.0
-offset_top = 114.0
-offset_right = 658.0
-offset_bottom = 137.0
+layout_mode = 2
 text = "Désolé vous avez perdu :<"
 
-[node name="ReturnButton" type="Button" parent="Menus/EndGamePanel" unique_id=943279623]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="ReturnButton" type="Button" parent="Menus/EndGamePanel/MarginContainer/EndGameLayout" unique_id=943279623]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Retour au menu"
 
 [connection signal="game_start" from="." to="Menus/Game" method="game_start"]
-[connection signal="pressed" from="Menus/TitleScreen/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menus/TitleScreen/Rules" to="." method="_on_rules_pressed"]
-[connection signal="pressed" from="Menus/Rules/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Menus/PanelContainer/MarginContainer/TitleScreen/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menus/PanelContainer/MarginContainer/TitleScreen/Rules" to="." method="_on_rules_pressed"]
+[connection signal="pressed" from="Menus/PanelContainer2/Rules/Return" to="." method="_on_return_pressed"]
 [connection signal="loose" from="Menus/Game" to="." method="on_loose"]
 [connection signal="win" from="Menus/Game" to="." method="on_win"]
-[connection signal="pressed" from="Menus/EndGamePanel/ReturnButton" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Menus/EndGamePanel/MarginContainer/EndGameLayout/ReturnButton" to="." method="_on_return_pressed"]
