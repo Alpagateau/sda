@@ -2,7 +2,31 @@
 
 [ext_resource type="Script" uid="uid://bs3yiu5n41ltt" path="res://Scenes/game.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://djrlfkt78dksx" path="res://test_server/image.png" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://s1nrc0glqtdn" path="res://Images/frame.png" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://d1a7tlbdakg01" path="res://Scenes/ruler.tscn" id="3_wrm1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
+bg_color = Color(0.13725491, 0.34117648, 0.5372549, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dryh"]
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_color = Color(0.3529412, 0.15294118, 0.007843138, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [node name="Game" type="VBoxContainer" unique_id=1346781987]
 anchors_preset = 15
@@ -13,47 +37,67 @@ grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_qxrlw")
 
-[node name="MarginContainer2" type="HBoxContainer" parent="." unique_id=957264537]
+[node name="Padding" type="PanelContainer" parent="." unique_id=1820638172]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1749886422]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=957246416]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer" unique_id=1743906611]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("2_wowpa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer" unique_id=1174637932]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=1943072745]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 2
+texture = ExtResource("2_3dryh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1749886422]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="GuessText" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=1130793368]
+[node name="GuessText" type="Label" parent="VBoxContainer" unique_id=1130793368]
 layout_mode = 2
 text = "Devine de quelle année date cette oeuvre."
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=577714986]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=577714986]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
 
-[node name="DateEntry" type="LineEdit" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1876153362]
+[node name="DateEntry" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1876153362]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrm1d")
 placeholder_text = "Date ..."
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
 clear_button_enabled = true
 
-[node name="Guess" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=864654446]
+[node name="Guess" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=864654446]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3dryh")
 text = "Valider"
 
-[node name="AttempsText" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=443166781]
+[node name="AttempsText" type="Label" parent="VBoxContainer" unique_id=443166781]
 layout_mode = 2
 text = "Il vous reste X essais"
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer2" unique_id=957246416]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/CenterContainer" unique_id=1943072745]
-layout_mode = 2
-texture = ExtResource("2_3dryh")
-expand_mode = 5
-stretch_mode = 3
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="VBoxContainer" parent="." unique_id=1849128363]
 layout_mode = 2
@@ -69,5 +113,5 @@ layout_mode = 2
 number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]
-[connection signal="text_submitted" from="MarginContainer2/VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/DateEntry" to="." method="_on_answer_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Guess" to="." method="_on_guess_pressed"]

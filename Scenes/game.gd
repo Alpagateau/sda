@@ -20,11 +20,11 @@ func b64_to_texture_2d(b64 : String) -> Texture2D:
 
 # To call when there is a response from the server
 func load_b64_image(b64_image : String):
-	$MarginContainer2/CenterContainer/TextureRect.texture = b64_to_texture_2d(b64_image)
+	$CenterContainer/TextureRect.texture = b64_to_texture_2d(b64_image)
 
 func update_attemps_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
-	$MarginContainer2/VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
+	$VBoxContainer/AttempsText.text = "Il vous reste " + str(value) + " essai" + s
 
 func _on_answer_submitted(_text:String) -> void :
 	#guessed.emit()
@@ -46,7 +46,7 @@ func game_start(attemps_nb : int, min_date : int, max_date : int) -> void:
 
 func _on_guess_pressed() -> void:
 	#guessed.emit() <- infinite calls ? or idk how signals work
-	var date : String = $MarginContainer2/VBoxContainer/HBoxContainer/DateEntry.text
+	var date : String = $VBoxContainer/HBoxContainer/DateEntry.text
 	if date.is_valid_int():
 		decrement_attemps()
 		var date_value : int = date.to_int()
