@@ -17,6 +17,8 @@ var minimal_date : int = 2019
 var maximum_date : int = 2021
 var offset : int = 1 # minimal and maximum date are calculated based on offset
 
+var current_challenge_idx : int = -1
+
 signal game_start
 
 func _ready() -> void:	
@@ -32,15 +34,22 @@ func _ready() -> void:
 	print(percent)
 	if percent < 0 or percent > 1:
 		print("[DEBUG] Random !")
-		idx = randi() % len(challenges)
+		idx = 0 #randi() % len(challenges)
 	else:
 		idx = int(len(challenges) * percent)
+	
+	current_challenge_idx = idx
+	if idx <= SaveLoader.loaded_save.last_finished_game_idx:
+		if SaveLoader.loaded_save.streak == 0 : # if streak is 0 this means the player has lost last time
+			on_loose()
+		else :
+			on_win(SaveLoader.loaded_save.last_finished_game_attemps)
+		return
 	
 	print("IDX : ", idx)
 	
 	$Menus/Game.load_challenge(challenges[idx])
-	minimal_date = challenges[idx].year - offset
-	maximum_date = challenges[idx].year + offset
+	init_player(SaveLoader.loaded_save.streak, SaveLoader.loaded_save.total_score, challenges[idx].year)
 	#select correct thingy
 	#TODO
 
@@ -78,16 +87,23 @@ func show_only_menu(menu : Control) -> void :
 			m.hide()
 	menu.show()
 
-func init_player(player_streak : int, answer : int) -> void:
+func init_player(player_streak : int, player_total_win : int, answer : int) -> void:
 	win_streak = player_streak
-	minimal_date = 	answer - offset
+	total_win = player_total_win
+	minimal_date = answer - offset
 	maximum_date = answer + offset
-	update_streak_text(player_streak)
+	update_title_screen()
 	
 func update_title_screen() -> void :
-	update_streak_text(win_streak)
+	update_streak_text(win_streak, total_win)
 
 func start_game() -> void :
+	if current_challenge_idx <= SaveLoader.loaded_save.last_finished_game_idx:
+		if SaveLoader.loaded_save.streak == 0 : # if streak is 0 this means the player has lost last time
+			on_loose()
+		else :
+			on_win(SaveLoader.loaded_save.last_finished_game_attemps)
+		return
 	show_only_menu($Menus/Game)
 	game_start.emit(attemps, minimal_date, maximum_date)
 	#$Menus/Game/TextureRect.show()
@@ -114,10 +130,10 @@ func _on_rules_pressed() -> void:
 func _on_return_pressed() -> void:
 	update_title_screen()
 	show_only_menu($Menus/PanelContainer)
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
 	
-func update_streak_text(value : int) -> void:
-	$Menus/PanelContainer/MarginContainer/TitleScreen/StreakText.text = "Série actuelle :" + str(value)
+func update_streak_text(streak : int, total : int) -> void:
+	$Menus/PanelContainer/MarginContainer/TitleScreen/StreakText.text = "Série actuelle : " + str(streak) + " | Score total : " + str(total)
 	
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
@@ -127,8 +143,18 @@ func on_win(attemps_nb : int) -> void:
 	update_win_text(max_attemps - attemps_nb)
 	win_streak += 1
 	total_win += 1
+	SaveLoader.loaded_save.streak = win_streak
+	SaveLoader.loaded_save.total_score = total_win
+	SaveLoader.loaded_save.last_finished_game_attemps = attemps_nb
+	SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
+	SaveLoader.save_game()
 	show_win_menu()
 
 func on_loose():
 	win_streak = 0
+	SaveLoader.loaded_save.streak = win_streak
+	SaveLoader.loaded_save.total_score = total_win
+	SaveLoader.loaded_save.last_finished_game_attemps = max_attemps
+	SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
+	SaveLoader.save_game()
 	show_lose_menu()

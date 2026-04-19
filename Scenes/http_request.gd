@@ -50,4 +50,4 @@ func process_html_request(result : int, response_code : int, headers : PackedStr
 	print("Answer: ", json["Answer"])
 	var b64_image : String = json["Image"]
 	$"../Menus/Game".load_b64_image(b64_image)
-	$"..".init_player(json["PlayerStreak"], json["Answer"])
+	#$"..".init_player(json["PlayerStreak"], json["Answer"])
