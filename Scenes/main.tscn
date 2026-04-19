@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_21xkr"]
 script = ExtResource("2_6bp64")
-wiki_link = "Mona Lisa"
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_natural_color.jpg/330px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_natural_color.jpg"
 date = 1
 photo_id = 4
 year = 1506
@@ -17,16 +17,30 @@ metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
 
 [sub_resource type="Resource" id="Resource_6bp64"]
 script = ExtResource("2_6bp64")
-wiki_link = "Colosseum"
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/330px-Colosseo_2020.jpg"
 photo_id = 1
 year = -79
 metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
 
 [sub_resource type="Resource" id="Resource_344ge"]
 script = ExtResource("2_6bp64")
-wiki_link = "The Kiss (Klimt)"
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/330px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg"
 photo_id = 1
 year = 1908
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="Resource" id="Resource_ynf5e"]
+script = ExtResource("2_6bp64")
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/E-hon.title.%26.author.pending.illustrated.by.hokusai.mouse.cat.neko.statue.horde.of.mice.fleeing.jpg/500px-E-hon.title.%26.author.pending.illustrated.by.hokusai.mouse.cat.neko.statue.horde.of.mice.fleeing.jpg"
+photo_id = 4
+year = 1808
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="Resource" id="Resource_hptm8"]
+script = ExtResource("2_6bp64")
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Roman_Venus_MBA_Lyon_L83.jpg/250px-Roman_Venus_MBA_Lyon_L83.jpg"
+photo_id = 2
+year = 150
 metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
@@ -51,7 +65,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_21xkr"), SubResource("Resource_6bp64"), SubResource("Resource_344ge")])
+challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_21xkr"), SubResource("Resource_6bp64"), SubResource("Resource_344ge"), SubResource("Resource_ynf5e"), SubResource("Resource_hptm8")])
 
 [node name="ColorRect" type="TextureRect" parent="." unique_id=1587893470]
 layout_mode = 1
