@@ -73,9 +73,11 @@ func decrement_attemps() -> void :
 	update_attemps_text(attemps)
 
 func load_challenge(_challenge : Challenge):
-	var request_url = wiki_api + "?action=query&titles="+(_challenge.wiki_link.replace(" ", "%20"))+"&format=json&prop=images"
+	#var request_url = wiki_api + "?action=query&titles="+(_challenge.wiki_link.replace(" ", "%20"))+"&format=json&prop=images"
+	var request_url = _challenge.wiki_link
 	photo_id = _challenge.photo_id
-	var err : Error = $NameRequest.request(
+	#var err : Error = $NameRequest.request(
+	var err : Error = $ImageTexture.request(
 		request_url,
 		PackedStringArray([]),
 		HTTPClient.Method.METHOD_GET,
@@ -123,9 +125,10 @@ func _on_image_url_request_completed(_result: int, _response_code: int, _headers
 	print("[IMAGE URL] ", image_url)
 	$ImageTexture.request(image_url, [], HTTPClient.METHOD_GET)
 
+
 func _on_image_texture_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	var image : Image = Image.new()
-	var type : String = _headers[0].to_lower()
+	var type : String = Array(_headers).filter(func(x: String): return x.contains("type"))[0]
 	if type.contains("png"):
 		image.load_png_from_buffer(body)
 	if type.contains("jpeg") or type.contains("jpg"):
@@ -133,5 +136,6 @@ func _on_image_texture_request_completed(_result: int, _response_code: int, _hea
 	if type.contains("webp"):
 		image.load_webp_from_buffer(body)
 	if image.is_empty() && photo_id < 10: 
+		print("ERROR ", _response_code, " | " ,type)
 		return
 	$CenterContainer/TextureRect.texture = ImageTexture.create_from_image(image)
