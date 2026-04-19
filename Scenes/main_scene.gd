@@ -137,7 +137,7 @@ func update_streak_text(streak : int, total : int) -> void:
 	
 func update_win_text(value : int) -> void :
 	var s : String = "" if value < 2 else "s"
-	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.text = "Vous avez gagné en " + str(value) + " essai" + s
+	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.text = "Vous avez gagné en " + str(value) + " essai !\nRevenez demain pour une autre oeuvre" + s
 
 func on_win(attemps_nb : int) -> void:
 	update_win_text(max_attemps - attemps_nb)
