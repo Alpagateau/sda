@@ -24,6 +24,7 @@ enum Continuity
 @export_category("Visual")
 @export var stick_color : Color
 @export var background_color : Color
+@export var outside_color : Color
 @export var height : int = 150
 @export var number_of_markers : int = 15
 
@@ -42,20 +43,24 @@ func _ready() -> void:
 	
 func draw_marker(year : int, c : Color = stick_color):
 	var origin : Vector2 = Vector2.RIGHT * year_to_pos(year)
+	var down_offset = Vector2.DOWN * (height - ThemeDB.fallback_font_size) if c == stick_color else Vector2.ZERO
+	var small_offset = Vector2.DOWN * ThemeDB.fallback_font_size if c == stick_color else Vector2.ZERO
 	draw_line(
-		origin,
-		origin + Vector2.DOWN * height,
+		origin+small_offset,
+		origin + Vector2.DOWN * height + small_offset,
 		c,
 		2
 	)
+	
+	
 	draw_string(
 		ThemeDB.fallback_font,
-		origin + Vector2.DOWN * ThemeDB.fallback_font_size + Vector2.RIGHT * 3, 
+		origin + Vector2.DOWN * ThemeDB.fallback_font_size + Vector2.RIGHT * 3 + down_offset, 
 		str(year),
 		HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		16,
-		c if c != stick_color else Color.WHITE
+		c if c != stick_color else stick_color
 	)
 
 func year_to_pos(year : int) -> int:
@@ -92,8 +97,8 @@ func _draw() -> void:
 				_:
 					pass
 	if (max_guess - min_guess) > number_of_markers:
-		min_year = min_guess - 20
-		max_year = max_guess + 20
+		min_year = min_guess - number_of_markers
+		max_year = max_guess + number_of_markers
 	
 	#Drawing default markers 
 	for i in range(number_of_markers + 1):
@@ -119,14 +124,14 @@ func _draw() -> void:
 			point1,
 			size - point1
 		),
-		Color.from_rgba8(0,0,0,155)
+		outside_color
 	)
 	draw_rect(
 		Rect2(
 			Vector2.DOWN * ThemeDB.fallback_font_size,
 			point2
 		),
-		Color.from_rgba8(0,0,0,155)
+		outside_color
 	)
 	
 func reset():

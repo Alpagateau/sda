@@ -9,7 +9,7 @@ enum State {
 
 @export var challenges : Array[Challenge]
 
-var max_attemps : int = 5
+var max_attemps : int = 8
 var attemps : int = max_attemps
 var win_streak : int = 0
 var total_win : int = 0

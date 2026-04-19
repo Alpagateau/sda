@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://cx5mnyknjhi5e" path="res://Challenge.gd" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://c6r3q0g3xkyx" path="res://Scenes/game.tscn" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://cqm5rl57c5b4" path="res://Images/back.png" id="3_kry3j"]
+[ext_resource type="Texture2D" uid="uid://cca83vt3lw425" path="res://Images/new_background.png" id="3_21xkr"]
+[ext_resource type="StyleBox" uid="uid://dee16yd55kaw" path="res://new_style_box_flat.tres" id="4_6bp64"]
 [ext_resource type="FontFile" uid="uid://dogmxbp8v3xsk" path="res://fonts/Cascadia_Mono/static/CascadiaMono-Bold.ttf" id="4_21xkr"]
 [ext_resource type="Theme" uid="uid://ckem3oug84o3o" path="res://mytheme.tres" id="7_344ge"]
 
@@ -43,19 +44,85 @@ photo_id = 2
 year = 150
 metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
-bg_color = Color(0, 0, 0, 0.88235295)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="Resource" id="Resource_d1ilt"]
+script = ExtResource("2_6bp64")
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/UP_rhino.JPG/330px-UP_rhino.JPG"
+year = 1280
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="Resource" id="Resource_6iyac"]
+script = ExtResource("2_6bp64")
+wiki_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Standing_male_worshiper_MET_DT850.jpg/960px-Standing_male_worshiper_MET_DT850.jpg"
+year = -2700
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21xkr"]
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_width_left = 128
+border_width_top = 32
+border_width_right = 128
+border_width_bottom = 32
+border_color = Color(1, 0.85882354, 0.08235294, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 corner_detail = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hptm8"]
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_width_left = 150
+border_width_top = 8
+border_width_right = 150
+border_width_bottom = 8
+border_color = Color(1, 0.85882354, 0.08235294, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+corner_detail = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_344ge"]
-bg_color = Color(0, 0, 0, 0.88235295)
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_width_left = 32
+border_width_top = 16
+border_width_right = 32
+border_width_bottom = 16
+border_color = Color(1, 0.85882354, 0.08235294, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
-bg_color = Color(0, 0, 0, 0.88235295)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_width_left = 32
+border_width_top = 16
+border_width_right = 32
+border_width_bottom = 16
+border_color = Color(1, 0.85882354, 0.08235294, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [node name="Main" type="Control" unique_id=370660818]
 layout_mode = 3
@@ -65,7 +132,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_21xkr"), SubResource("Resource_6bp64"), SubResource("Resource_344ge"), SubResource("Resource_ynf5e"), SubResource("Resource_hptm8")])
+challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_21xkr"), SubResource("Resource_6bp64"), SubResource("Resource_344ge"), SubResource("Resource_ynf5e"), SubResource("Resource_hptm8"), SubResource("Resource_d1ilt"), SubResource("Resource_6iyac")])
 
 [node name="ColorRect" type="TextureRect" parent="." unique_id=1587893470]
 layout_mode = 1
@@ -74,7 +141,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_kry3j")
+texture = ExtResource("3_21xkr")
 expand_mode = 1
 
 [node name="Menus" type="Control" parent="." unique_id=1799261247]
@@ -86,6 +153,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Menus" unique_id=1119172307]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -98,14 +166,14 @@ offset_right = 164.0
 offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6bp64")
+theme_override_styles/panel = ExtResource("4_6bp64")
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/PanelContainer" unique_id=1764195628]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 
 [node name="TitleScreen" type="VBoxContainer" parent="Menus/PanelContainer/MarginContainer" unique_id=1193295578]
 layout_mode = 2
@@ -120,7 +188,7 @@ horizontal_alignment = 1
 [node name="TitleText" type="Label" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1527872093]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85882354, 0.08235294, 1)
-theme_override_colors/font_shadow_color = Color(0.18431373, 0.101960786, 0.06666667, 1)
+theme_override_colors/font_shadow_color = Color(0.4117647, 0.14901961, 0.007843138, 1)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 7
 theme_override_fonts/font = ExtResource("4_21xkr")
@@ -131,12 +199,14 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=236600597]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+theme_override_constants/separation = 64
 
 [node name="Play" type="Button" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=667404207]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("7_344ge")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_21xkr")
 text = " Jouer "
 
 [node name="HSeparator2" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1433041191]
@@ -147,19 +217,21 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("7_344ge")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hptm8")
 text = "Règles"
 
 [node name="HSeparator3" type="HSeparator" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=695645831]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="StreakText" type="Label" parent="Menus/PanelContainer/MarginContainer/TitleScreen" unique_id=1784228704]
 layout_mode = 2
-text = "Série actuelle : 0 | Total : 0"
+theme_override_font_sizes/font_size = 25
+text = "Série actuelle : 0   |   Total : 0"
 horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="Menus" unique_id=2106939126]
-visible = false
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -173,7 +245,7 @@ offset_right = 285.5
 offset_bottom = 80.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_344ge")
+theme = ExtResource("7_344ge")
 
 [node name="Rules" type="VBoxContainer" parent="Menus/PanelContainer2" unique_id=833546868]
 layout_mode = 2
@@ -181,10 +253,16 @@ size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
 
+[node name="HSeparator2" type="HSeparator" parent="Menus/PanelContainer2/Rules" unique_id=1270970543]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+
 [node name="RichTextLabel" type="RichTextLabel" parent="Menus/PanelContainer2/Rules" unique_id=319295760]
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.85882354, 0.08235294, 1)
 text = "Voici les regles :
+
 Chaques jours, une oeuvre vous sera proposee. 
 Vous avez un nombre fini d'essais pour dater au plus pres cette oeuvre !
 Amusez vous bien ^^"
@@ -192,10 +270,21 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="Menus/PanelContainer2/Rules" unique_id=1816783110]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+
 [node name="Return" type="Button" parent="Menus/PanelContainer2/Rules" unique_id=1201108630]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_344ge")
 text = "Retour"
+
+[node name="HSeparator3" type="HSeparator" parent="Menus/PanelContainer2/Rules" unique_id=399373887]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="Game" parent="Menus" unique_id=1869356464 instance=ExtResource("3_8gbba")]
 visible = false
@@ -215,7 +304,7 @@ offset_right = 129.5
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ynf5e")
+theme = ExtResource("7_344ge")
 
 [node name="MarginContainer" type="MarginContainer" parent="Menus/EndGamePanel" unique_id=181944123]
 layout_mode = 2
@@ -237,9 +326,16 @@ visible = false
 layout_mode = 2
 text = "Désolé vous avez perdu :<"
 
+[node name="HSeparator" type="HSeparator" parent="Menus/EndGamePanel/MarginContainer/EndGameLayout" unique_id=261005260]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
 [node name="ReturnButton" type="Button" parent="Menus/EndGamePanel/MarginContainer/EndGameLayout" unique_id=943279623]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6bp64")
 text = "Retour au menu"
 
 [connection signal="game_start" from="." to="Menus/Game" method="game_start"]

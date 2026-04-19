@@ -7,19 +7,26 @@
 [ext_resource type="Theme" uid="uid://ckem3oug84o3o" path="res://mytheme.tres" id="4_wowpa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wowpa"]
-bg_color = Color(0, 0, 0, 0.88235295)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color(0.19607843, 0.09803922, 0.09803922, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.47843137, 0.23137255, 0.09803922, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 corner_detail = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrm1d"]
-bg_color = Color(0.13725491, 0.34117648, 0.5372549, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g32"]
+bg_color = Color(1, 0.85882354, 0.08235294, 1)
+border_width_left = 16
+border_width_right = 16
+border_color = Color(1, 0.85882354, 0.08235294, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_detail = 10
 expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
@@ -34,6 +41,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_qxrlw")
+user_color = Color(1, 0.85882354, 0.08235294, 1)
 
 [node name="NameRequest" type="HTTPRequest" parent="." unique_id=1671850263]
 
@@ -72,6 +80,7 @@ stretch_mode = 5
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2080219236]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("4_wowpa")
 theme_override_styles/panel = SubResource("StyleBoxFlat_wowpa")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2099452636]
@@ -89,19 +98,20 @@ alignment = 1
 
 [node name="GuessText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1130793368]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.8980392, 0.8509804, 1)
 text = "Devine de quelle année date cette oeuvre."
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=577714986]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="DateEntry" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1876153362]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_wrm1d")
+size_flags_horizontal = 3
+theme = ExtResource("4_wowpa")
 placeholder_text = "Date ..."
 keep_editing_on_text_submit = true
 emoji_menu_enabled = false
@@ -110,11 +120,13 @@ clear_button_enabled = true
 [node name="Guess" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=864654446]
 layout_mode = 2
 theme = ExtResource("4_wowpa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i6g32")
 text = "Valider"
 
 [node name="AttempsText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=443166781]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.8980392, 0.8509804, 1)
 text = "Il vous reste X essais"
 horizontal_alignment = 1
 
@@ -129,8 +141,9 @@ size_flags_vertical = 0
 
 [node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
 layout_mode = 2
-min_year = -2280
-max_year = 2330
+min_year = -3885
+max_year = 2985
+outside_color = Color(0.4117647, 0.14901961, 0.007843138, 0.8627451)
 number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]

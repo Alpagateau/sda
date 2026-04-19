@@ -10,7 +10,9 @@ signal guessed
 
 var minimal_date : int = 1586
 var maximum_date : int = 1586
-var attemps : int = 5
+var attemps : int = 15
+
+@export var user_color : Color
 
 var wiki_api : String = "https://en.wikipedia.org/w/api.php"
 var photo_id = -1
@@ -44,7 +46,7 @@ func add_marker(year : int):
 	new_marker.date = year
 	new_marker.relative_position = Marker.Position.Before if year <= minimal_date else Marker.Position.After
 	print(minimal_date)
-	new_marker.color = Color.RED
+	new_marker.color = user_color
 	$MarginContainer/ScrollContainer/Ruler2.add_child(new_marker)
 	$MarginContainer/ScrollContainer/Ruler2.queue_redraw()
 
