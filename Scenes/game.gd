@@ -47,14 +47,17 @@ func game_start(attemps_nb : int, min_date : int, max_date : int) -> void:
 func _on_guess_pressed() -> void:
 	#guessed.emit() <- infinite calls ? or idk how signals work
 	var date : String = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DateEntry.text
+	$PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DateEntry.clear()
 	if date.is_valid_int():
 		decrement_attemps()
 		var date_value : int = date.to_int()
 		add_marker(date_value)
 		if minimal_date <= date_value and date_value <= maximum_date :
 			win.emit(attemps)
+			$MarginContainer/ScrollContainer/Ruler2.reset()
 		elif attemps == 0 :
 			loose.emit()
+			$MarginContainer/ScrollContainer/Ruler2.reset()
 
 func decrement_attemps() -> void :
 	attemps -= 1

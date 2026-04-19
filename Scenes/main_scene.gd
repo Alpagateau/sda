@@ -25,8 +25,7 @@ func _ready() -> void:
 	
 	var current_date : Dictionary = Time.get_datetime_dict_from_system()
 	#select correct thingy
-	
-	#waiting()
+	#TODO
 
 var waiting_dot : int = 0
 func update_waiting_text():
@@ -98,6 +97,7 @@ func _on_rules_pressed() -> void:
 func _on_return_pressed() -> void:
 	update_title_screen()
 	show_only_menu($Menus/PanelContainer)
+	get_tree().reload_current_scene()
 	
 func update_streak_text(value : int) -> void:
 	$Menus/PanelContainer/MarginContainer/TitleScreen/StreakText.text = "Série actuelle :" + str(value)

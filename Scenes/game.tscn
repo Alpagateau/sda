@@ -123,6 +123,8 @@ size_flags_vertical = 0
 
 [node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
 layout_mode = 2
+min_year = -2040
+max_year = 2090
 number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]

@@ -27,6 +27,8 @@ enum Continuity
 @export var height : int = 150
 @export var number_of_markers : int = 15
 
+var default_years : Vector2i
+
 @export_tool_button("Redraw") var redraw : Callable = (func(): 
 	queue_redraw()
 	_ready()
@@ -36,6 +38,7 @@ func _ready() -> void:
 	custom_minimum_size.x = width
 	custom_minimum_size.y = height
 	update_minimum_size()
+	default_years = Vector2i(min_year, max_year)
 	
 func draw_marker(year : int, c : Color = stick_color):
 	var origin : Vector2 = Vector2.RIGHT * year_to_pos(year)
@@ -89,20 +92,20 @@ func _draw() -> void:
 				_:
 					pass
 	if (max_guess - min_guess) > number_of_markers:
-		min_year = (min_year + min_guess) / 2
-		max_year = (max_year + max_guess) / 2
+		min_year = min_guess - 20
+		max_year = max_guess + 20
 	
 	#Drawing default markers 
-	for i in range(number_of_markers):
+	for i in range(number_of_markers + 1):
 		var percent : float = (float(i)/ number_of_markers)
-		var pos = int(lerp(0.0, width, percent))
+		#var pos = int(lerp(0.0, width, percent))
 		var year = int(
 			lerp(min_year, max_year, percent)
 		)
 		draw_marker(year)
 		
-	var current_year : int = min_year
-	var last_year : int = min_year
+	#var current_year : int = min_year
+	#var last_year : int = min_year
 	
 	# Drawing markers
 	for c in get_children():
@@ -125,3 +128,11 @@ func _draw() -> void:
 		),
 		Color.from_rgba8(0,0,0,155)
 	)
+	
+func reset():
+	for c in get_children():
+		remove_child(c)
+		c.queue_free()
+	min_year = default_years.x
+	max_year = default_years.y
+	
