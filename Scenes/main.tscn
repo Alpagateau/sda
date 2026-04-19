@@ -2,18 +2,31 @@
 
 [ext_resource type="Script" uid="uid://du6f2mpdyke7e" path="res://Scenes/main_scene.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://cx5mnyknjhi5e" path="res://Challenge.gd" id="2_6bp64"]
-[ext_resource type="Script" uid="uid://btvdm82lbfmho" path="res://Scenes/http_request.gd" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://c6r3q0g3xkyx" path="res://Scenes/game.tscn" id="3_8gbba"]
-[ext_resource type="Texture2D" uid="uid://qruy0344mnfg" path="res://test_server/omor.png" id="3_344ge"]
 [ext_resource type="Texture2D" uid="uid://cqm5rl57c5b4" path="res://Images/back.png" id="3_kry3j"]
 [ext_resource type="FontFile" uid="uid://dogmxbp8v3xsk" path="res://fonts/Cascadia_Mono/static/CascadiaMono-Bold.ttf" id="4_21xkr"]
 [ext_resource type="Theme" uid="uid://ckem3oug84o3o" path="res://mytheme.tres" id="7_344ge"]
 
-[sub_resource type="Resource" id="Resource_ynf5e"]
+[sub_resource type="Resource" id="Resource_21xkr"]
 script = ExtResource("2_6bp64")
-image = ExtResource("3_344ge")
-name = "Omor"
-answer = 2020
+wiki_link = "Mona Lisa"
+date = 1
+photo_id = 4
+year = 1506
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="Resource" id="Resource_6bp64"]
+script = ExtResource("2_6bp64")
+wiki_link = "Colosseum"
+photo_id = 1
+year = -79
+metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
+
+[sub_resource type="Resource" id="Resource_344ge"]
+script = ExtResource("2_6bp64")
+wiki_link = "The Kiss (Klimt)"
+photo_id = 1
+year = 1908
 metadata/_custom_type_script = "uid://cx5mnyknjhi5e"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bp64"]
@@ -38,10 +51,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_ynf5e")])
-
-[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1035645630]
-script = ExtResource("2_jjvhh")
+challenges = Array[ExtResource("2_6bp64")]([SubResource("Resource_21xkr"), SubResource("Resource_6bp64"), SubResource("Resource_344ge")])
 
 [node name="ColorRect" type="TextureRect" parent="." unique_id=1587893470]
 layout_mode = 1

@@ -1,8 +1,7 @@
 extends Resource
 class_name Challenge
 
-@export var image : Texture2D 
-@export var name : String
-@export var answer : int
-@export var date_day : Time.Weekday
-@export var date_hour : int
+@export var wiki_link : String 
+@export var date : Time.Weekday
+@export var photo_id : int
+@export var year : int

@@ -23,7 +23,24 @@ func _ready() -> void:
 	show_only_menu($Menus/PanelContainer)
 	$Menus/Game.update_attemps_text(attemps)
 	
-	var current_date : Dictionary = Time.get_datetime_dict_from_system()
+	var current_date : int = int(Time.get_unix_time_from_system())
+	var start_date : int = Time.get_unix_time_from_datetime_string("2026-04-20T01:00:00")
+	var end_date : int = Time.get_unix_time_from_datetime_string("2026-04-27T01:00:00")
+	
+	var percent : float = float(current_date - start_date) / float(end_date - start_date)
+	var idx : int = -1 
+	print(percent)
+	if percent < 0 or percent > 1:
+		print("[DEBUG] Random !")
+		idx = randi() % len(challenges)
+	else:
+		idx = int(len(challenges) * percent)
+	
+	print("IDX : ", idx)
+	
+	$Menus/Game.load_challenge(challenges[idx])
+	minimal_date = challenges[idx].year - offset
+	maximum_date = challenges[idx].year + offset
 	#select correct thingy
 	#TODO
 

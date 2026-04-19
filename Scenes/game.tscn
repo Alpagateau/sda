@@ -35,6 +35,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_qxrlw")
 
+[node name="NameRequest" type="HTTPRequest" parent="." unique_id=1671850263]
+
+[node name="ImageURL" type="HTTPRequest" parent="." unique_id=981370353]
+
+[node name="ImageTexture" type="HTTPRequest" parent="." unique_id=1752410535]
+
 [node name="Padding" type="PanelContainer" parent="." unique_id=1820638172]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 20)
@@ -123,8 +129,8 @@ size_flags_vertical = 0
 
 [node name="Ruler2" parent="MarginContainer/ScrollContainer" unique_id=1826143249 instance=ExtResource("3_wrm1d")]
 layout_mode = 2
-min_year = -2040
-max_year = 2090
+min_year = -2280
+max_year = 2330
 number_of_markers = 15
 
 [connection signal="guessed" from="." to="." method="_on_guess_pressed"]

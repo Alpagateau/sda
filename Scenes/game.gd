@@ -12,6 +12,15 @@ var minimal_date : int = 1586
 var maximum_date : int = 1586
 var attemps : int = 5
 
+var wiki_api : String = "https://en.wikipedia.org/w/api.php"
+var photo_id = -1
+
+func _ready() -> void:
+	$NameRequest.request_completed.connect(_on_http_request_request_completed)
+	$ImageURL.request_completed.connect(_on_image_url_request_completed)
+	$ImageTexture.request_completed.connect(_on_image_texture_request_completed)
+	pass
+
 func b64_to_texture_2d(b64 : String) -> Texture2D:
 	var image_bytes: PackedByteArray = Marshalls.base64_to_raw(b64)
 	var image : Image = Image.new()
@@ -62,3 +71,67 @@ func _on_guess_pressed() -> void:
 func decrement_attemps() -> void :
 	attemps -= 1
 	update_attemps_text(attemps)
+
+func load_challenge(_challenge : Challenge):
+	var request_url = wiki_api + "?action=query&titles="+(_challenge.wiki_link.replace(" ", "%20"))+"&format=json&prop=images"
+	photo_id = _challenge.photo_id
+	var err : Error = $NameRequest.request(
+		request_url,
+		PackedStringArray([]),
+		HTTPClient.Method.METHOD_GET,
+	)
+	if err != Error.OK:
+		print("Error")
+	
+
+# For the name and stuff
+func _on_http_request_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	print(_response_code)
+	if _response_code != 200: return
+	print(body.get_string_from_ascii())
+	var jbody = JSON.parse_string(body.get_string_from_utf8())
+	var pages : Dictionary = jbody["query"]["pages"]
+	var page = pages[pages.keys()[0]]
+	var _name = page["title"]
+	var image_url = page["images"][photo_id]["title"]
+	get_image(image_url)
+	
+	print("[NAME]", _name)
+
+func get_image(title : String):
+	var request_url = wiki_api \
+		+ "?action=query" \
+		+ "&titles=" + title.replace(" ", "%20") \
+		+ "&format=json&prop=imageinfo" \
+		+ "&iiprop=url"
+	print("[REQUEST URL] ", request_url)
+	var err : Error = $ImageURL.request(
+		request_url,
+		PackedStringArray([]),
+		HTTPClient.Method.METHOD_GET,
+	)
+	if err != Error.OK:
+		print("Error")
+
+func _on_image_url_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	print(_response_code)
+	var jbody = JSON.parse_string(body.get_string_from_utf8())
+	var pages : Dictionary = jbody["query"]["pages"]
+	var page = pages[pages.keys()[0]]
+	var image_info = page["imageinfo"][0]
+	var image_url = image_info["url"]
+	print("[IMAGE URL] ", image_url)
+	$ImageTexture.request(image_url, [], HTTPClient.METHOD_GET)
+
+func _on_image_texture_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var image : Image = Image.new()
+	var type : String = _headers[0].to_lower()
+	if type.contains("png"):
+		image.load_png_from_buffer(body)
+	if type.contains("jpeg") or type.contains("jpg"):
+		image.load_jpg_from_buffer(body)
+	if type.contains("webp"):
+		image.load_webp_from_buffer(body)
+	if image.is_empty() && photo_id < 10: 
+		return
+	$CenterContainer/TextureRect.texture = ImageTexture.create_from_image(image)
