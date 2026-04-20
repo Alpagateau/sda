@@ -15,8 +15,8 @@ var win_streak : int = 0
 var total_win : int = 0
 var minimal_date : int = 2019
 var maximum_date : int = 2021
-var offset : int = 1 # minimal and maximum date are calculated based on offset
-
+var offset : int = 2 # minimal and maximum date are calculated based on offset
+var played_today : bool = false
 var current_challenge_idx : int = -1
 
 signal game_start
@@ -37,14 +37,17 @@ func _ready() -> void:
 		idx = 0 #randi() % len(challenges)
 	else:
 		idx = int(len(challenges) * percent)
-	
 	current_challenge_idx = idx
-	if idx <= SaveLoader.loaded_save.last_finished_game_idx:
-		if SaveLoader.loaded_save.streak == 0 : # if streak is 0 this means the player has lost last time
-			on_loose()
-		else :
-			on_win(SaveLoader.loaded_save.last_finished_game_attemps)
-		return
+	if percent >= 0 and percent <= 1:
+		if idx <= SaveLoader.loaded_save.last_finished_game_idx:
+			played_today = true
+			if SaveLoader.loaded_save.streak == 0 : # if streak is 0 this means the player has lost last time
+				on_loose()
+			else :
+				on_win(SaveLoader.loaded_save.last_finished_game_attemps)
+			return
+	else:
+		print("SAVE NOT USED")
 	
 	print("IDX : ", idx)
 	
@@ -99,6 +102,7 @@ func update_title_screen() -> void :
 
 func start_game() -> void :
 	if current_challenge_idx <= SaveLoader.loaded_save.last_finished_game_idx:
+		played_today = true
 		if SaveLoader.loaded_save.streak == 0 : # if streak is 0 this means the player has lost last time
 			on_loose()
 		else :
@@ -140,21 +144,24 @@ func update_win_text(value : int) -> void :
 	$Menus/EndGamePanel/MarginContainer/EndGameLayout/WinText.text = "Vous avez gagné en " + str(value) + " essai !\nRevenez demain pour une autre oeuvre" + s
 
 func on_win(attemps_nb : int) -> void:
+	if !played_today:
+		win_streak += 1
+		total_win += 1
+		SaveLoader.loaded_save.streak = win_streak
+		SaveLoader.loaded_save.total_score = total_win
+		SaveLoader.loaded_save.last_finished_game_attemps = attemps_nb
+		SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
+		SaveLoader.save_game()
+	
 	update_win_text(max_attemps - attemps_nb)
-	win_streak += 1
-	total_win += 1
-	SaveLoader.loaded_save.streak = win_streak
-	SaveLoader.loaded_save.total_score = total_win
-	SaveLoader.loaded_save.last_finished_game_attemps = attemps_nb
-	SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
-	SaveLoader.save_game()
 	show_win_menu()
 
 func on_loose():
-	win_streak = 0
-	SaveLoader.loaded_save.streak = win_streak
-	SaveLoader.loaded_save.total_score = total_win
-	SaveLoader.loaded_save.last_finished_game_attemps = max_attemps
-	SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
-	SaveLoader.save_game()
+	if !played_today:
+		win_streak = 0
+		SaveLoader.loaded_save.streak = win_streak
+		SaveLoader.loaded_save.total_score = total_win
+		SaveLoader.loaded_save.last_finished_game_attemps = max_attemps
+		SaveLoader.loaded_save.last_finished_game_idx = current_challenge_idx
+		SaveLoader.save_game()
 	show_lose_menu()

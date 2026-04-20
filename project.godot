@@ -13,6 +13,8 @@ config_version=5
 config/name="SDA"
 run/main_scene="uid://c48f05e2g4ujs"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.18431373, 0.101960786, 0.06666667, 1)
+boot_splash/image="uid://b4gd3lnrtlnea"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,6 +25,7 @@ SaveLoader="*uid://dc0jhf0c0qoex"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [gui]
@@ -45,3 +48,4 @@ entry_confirm={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
